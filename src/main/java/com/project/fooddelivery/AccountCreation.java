@@ -26,8 +26,8 @@ public class AccountCreation extends javax.swing.JFrame {
         NumberFormatter YearFormatter = new NumberFormatter(YearFormat);
 
         YearFormatter.setValueClass(Integer.class);
-        YearFormatter.setMinimum(Year.now().getValue());
-        YearFormatter.setMaximum(Year.now().getValue()+6);
+        YearFormatter.setMinimum(Year.now().getValue()+1);
+        YearFormatter.setMaximum(Year.now().getValue()+10);
         TFexpYear.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(YearFormatter));
 
 
@@ -335,6 +335,13 @@ public class AccountCreation extends javax.swing.JFrame {
         if(RegStatus.equals("Account registered successfully")){
             JOptionPane.showMessageDialog(this, RegStatus,
             "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+        Login JframeLogin = new Login();
+        JframeLogin.setVisible(true);
+        JframeLogin.setLocation(this.getLocationOnScreen());
+        this.setVisible(false);
+            
+            
         }else{
             JOptionPane.showMessageDialog(this, RegStatus,
             "Failed", JOptionPane.ERROR_MESSAGE);

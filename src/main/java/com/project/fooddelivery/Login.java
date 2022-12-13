@@ -115,7 +115,11 @@ public class Login extends javax.swing.JFrame  {
     private void BloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloginActionPerformed
         User user = new User(TFusername.getText(),TFpassword.getText());
         if(user.ValidateUser()){
-            System.out.println("logged in :)");
+        FoodDelivery.user = user;
+        RestaurantForm JframeLogin = new RestaurantForm();
+        JframeLogin.setVisible(true);
+        JframeLogin.setLocation(this.getLocationOnScreen());
+        this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this, "Incorrect username or password",
             "Failed", JOptionPane.ERROR_MESSAGE);

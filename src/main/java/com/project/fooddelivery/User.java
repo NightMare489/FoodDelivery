@@ -21,6 +21,26 @@ public class User implements FileIO {
     private String Name,password,Email,PhoneNumber;
     private CreditCard creditCard;
 
+    public String getName() {
+        return Name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
     public User(String Name, String password, String Email,String PhoneNumber,CreditCard creditCard) {
         this.Name = Name;
         this.password = password;
