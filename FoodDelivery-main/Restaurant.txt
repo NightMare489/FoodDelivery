@@ -1,3 +1,0 @@
-[
-{"Name":"KFC","Dishes":["Cheering Box","Mega Rizo","Mighty Love","Yousef Box","sdgds","Cheering Box","Mega Rizo","Mighty Love","Yousef Box","sdgds"]}
-]
