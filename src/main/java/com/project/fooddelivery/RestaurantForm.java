@@ -16,13 +16,9 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -78,29 +74,12 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
         this.setTitle("Restaurants");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
-        
-//        this.setTitle("home libaray");
-
-        // Top Panel
-//        JPanel p1 = new JPanel();
-//        p1.setLayout(new FlowLayout());
-//        p1.setBackground(Color.LIGHT_GRAY);
-//        p1.setPreferredSize(new Dimension(950, 100));
-//
-//        JLabel l1 = new JLabel("All Library Items");
-//        l1.setForeground(Color.BLACK);
-//        l1.setPreferredSize(new Dimension(900, 50));
-//        l1.setFont(l1.getFont().deriveFont(30.0f));
-//
-//        p1.add(l1);
-
-        // Content Panel
+  
         JPanel p2 = new JPanel();
 
 
         p2.setLayout(new GridLayout(-1, 1));
         p2.setBackground(Color.LIGHT_GRAY);
-        // p2.setPreferredSize(new Dimension(950, 800));
         p2.setAutoscrolls(true);
 
         JScrollPane scrollPane = new JScrollPane(p2);
@@ -108,7 +87,7 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        // scrollPane.setBounds(0, 0, 950, 800);
+
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
@@ -121,7 +100,8 @@ try{
         for(int i=0; i < array.length(); i++)   
         {  
         JSONObject object = array.getJSONObject(i);
-        JPanel sp1 = new RestaurantPanel(this,object.getString("Name"),object.getString("Rate"),object.getString("Desc"),object.getString("Time"));
+        Restaurant Res = new Restaurant(object.getString("Name"), object.getString("Rate"), object.getString("Desc"), object.getString("Time"));
+        JPanel sp1 = new RestaurantPanel(this,Res);
         p2.add(sp1);
         }
 
@@ -134,12 +114,8 @@ try{
             
     }
 
-        // contentPane.add(p2);
-//        contentPane.add(p1, BorderLayout.NORTH);
-        // frame.add(p2);
-        // frame.setContentPane(contentPane);
-        this.add(contentPane);
 
+        this.add(contentPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         

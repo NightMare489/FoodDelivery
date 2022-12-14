@@ -24,7 +24,7 @@ public class RestaurantPanel extends javax.swing.JPanel  {
     // private javax.swing.JPanel jPanel1;
     
     private javax.swing.JFrame frame;
-    private String Rname,Rate,desc,time;
+    private Restaurant res;
     
     
     
@@ -34,12 +34,9 @@ public class RestaurantPanel extends javax.swing.JPanel  {
 
     }
 
-    public RestaurantPanel(javax.swing.JFrame frame,String Rname,String Rate,String desc,String time){
+    public RestaurantPanel(javax.swing.JFrame frame,Restaurant res){
         this.frame = frame;
-        this.Rname = Rname;
-        this.Rate = Rate;
-        this.desc = desc;
-        this.time = time;
+        this.res = res;
 
         initComponents();
         
@@ -59,16 +56,16 @@ public class RestaurantPanel extends javax.swing.JPanel  {
         jLabel5 = new javax.swing.JLabel();
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("icons\\" + Rname + ".png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("icons\\" + res.getName() + ".png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText(Rname);
+        jLabel2.setText(res.getName());
 
-        jLabel3.setText(desc);
+        jLabel3.setText(res.getDesc());
 
-        jLabel4.setText(time+" Min");
+        jLabel4.setText(res.getTime()+" Min");
 
-        jLabel5.setText(Rate);
+        jLabel5.setText(res.getRate());
 
 //        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 //        this.setLayout(jPanel1Layout);
@@ -133,7 +130,7 @@ public class RestaurantPanel extends javax.swing.JPanel  {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                     DishesForm DF = new DishesForm(Rname);
+                     DishesForm DF = new DishesForm(res.getName());
                      DF.setVisible(true);
                      DF.setLocation(frame.getLocationOnScreen());
                      frame.setVisible(false);

@@ -14,7 +14,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -29,6 +32,8 @@ import org.json.JSONObject;
  */
 public class DishesForm extends javax.swing.JFrame implements ActionListener {
 JMenuItem i1, i2, i3, i4, i5;  
+JMenu username;
+JLabel back;
     /**
      * Creates new form DishesForm
      */
@@ -39,7 +44,7 @@ private String ResName="";
         initComponents();
         this.ResName = ResName;
         
-        JMenu menu, submenu,username;  
+        JMenu menu, submenu; 
         
           JMenuBar mb=new JMenuBar();  
           menu=new JMenu("☰");  
@@ -57,11 +62,16 @@ private String ResName="";
 //          menu.add(submenu); 
 //          menu.add(submenu);  
           username =  new JMenu(FoodDelivery.user.getName());
+          back =  new JLabel("←");
+          //back.addActionListener(this);
 //                    username =  new JMenu("TEST");
 
 
           mb.add(menu);
+          mb.add(new JLabel(" | "));
           mb.add(username);
+          mb.add(i1);
+          
           
           this.setJMenuBar(mb);   
           this.setVisible(true);  
@@ -170,6 +180,11 @@ private String ResName="";
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
         this.setVisible(false);
+        }
+        if(e.getSource() == back){
+            System.out.println("welp");
+
+
         }
         
         
