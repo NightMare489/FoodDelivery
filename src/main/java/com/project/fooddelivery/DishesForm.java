@@ -23,6 +23,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,9 +34,9 @@ import org.json.JSONObject;
  * @author EL-YaMaMa
  */
 public class DishesForm extends javax.swing.JFrame implements ActionListener {
-JMenuItem i1, i2, i3, i4, i5;  
+JMenuItem i1, i2, i3, i4, i5,back;  
 JMenu username;
-JLabel back;
+// JLabel back;
     /**
      * Creates new form DishesForm
      */
@@ -55,6 +58,7 @@ private String ResName="";
           
           i1.addActionListener(this);  
           i3.addActionListener(this);   
+          
 
           
           menu.add(i1); menu.add(i2); menu.add(i3);  
@@ -62,15 +66,42 @@ private String ResName="";
 //          menu.add(submenu); 
 //          menu.add(submenu);  
           username =  new JMenu(FoodDelivery.user.getName());
-          back =  new JLabel("←");
-          //back.addActionListener(this);
-//                    username =  new JMenu("TEST");
+          back =  new JMenuItem("←");
+          back.setMinimumSize(menu.getSize());
+          back.setPreferredSize(menu.getSize());
+          back.setMaximumSize(new Dimension(20, 20));
+          back.addActionListener(this);
 
+            // back.addMenuListener(new MenuListener() {
 
+            //     @Override
+            //     public void menuSelected(MenuEvent e) {
+
+            //         RestaurantForm jframeRestaurantForm = new RestaurantForm();
+            //         jframeRestaurantForm.setVisible(true);
+            //         jframeRestaurantForm.setLocation(getLocationOnScreen());
+            //         setVisible(false);
+
+            //     }
+
+            //     @Override
+            //     public void menuDeselected(MenuEvent e) {
+                   
+
+            //     }
+
+            //     @Override
+            //     public void menuCanceled(MenuEvent e) {
+                   
+
+            //     }
+            // });
+
+          mb.add(back);
           mb.add(menu);
           mb.add(new JLabel(" | "));
           mb.add(username);
-          mb.add(i1);
+          
           
           
           this.setJMenuBar(mb);   
@@ -172,20 +203,25 @@ private String ResName="";
         
     }
 
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {    
         if(e.getSource()==i3) {
-            System.out.println("yes");
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
         this.setVisible(false);
         }
-        if(e.getSource() == back){
-            System.out.println("welp");
 
-
+        if(e.getSource()==back) {
+            RestaurantForm jframeRestaurantForm = new RestaurantForm();
+            jframeRestaurantForm.setVisible(true);
+            jframeRestaurantForm.setLocation(getLocationOnScreen());
+            setVisible(false);
         }
+
         
         
     }
