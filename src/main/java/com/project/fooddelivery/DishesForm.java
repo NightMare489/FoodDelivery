@@ -111,29 +111,13 @@ private String ResName="";
 
 
         final int FRAME_WIDTH = 555;
-        final int FRAME_HEIGHT = 800;
+        final int FRAME_HEIGHT = 810;
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setTitle("Dishes");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
-//        this.setTitle("home libaray");
-
-        // Top Panel
-//        JPanel p1 = new JPanel();
-//        p1.setLayout(new FlowLayout());
-//        p1.setBackground(Color.LIGHT_GRAY);
-//        p1.setPreferredSize(new Dimension(950, 100));
-//
-//        JLabel l1 = new JLabel("All Library Items");
-//        l1.setForeground(Color.BLACK);
-//        l1.setPreferredSize(new Dimension(900, 50));
-//        l1.setFont(l1.getFont().deriveFont(30.0f));
-//
-//        p1.add(l1);
-
-        // Content Panel
         JPanel p2 = new JPanel();
 
 
@@ -151,7 +135,7 @@ private String ResName="";
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(540, 905));
+        contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 
@@ -167,34 +151,33 @@ private String ResName="";
                 if(object.getString("Name").equals(ResName)){ 
                   JSONArray arr=  object.getJSONArray("Dishes");
                     for(int j=0;j<arr.length();j++){
-                           JPanel sp1 = new DishesPanel(this,arr.getString(j));
+                        String ob = "[";
+                        ob +=arr.get(j).toString();
+                        ob += "]";
+                        JSONObject JSobj = new JSONArray(ob).getJSONObject(0);
+                        
+                        Dish dish = new Dish(JSobj.getString("Name"),JSobj.getString("desc"),JSobj.getString("Price"));
+                        
+           
+                           JPanel sp1 = new DishesPanel(this,dish);
                                        p2.add(sp1);
 
                     }
-   
-//                    System.out.println();
                     
                 }
             }
+            
+            
+            for(int i=0;i<6-array.length();i++){
+            JPanel sp1 = new RestaurantPanel(false);
+            p2.add(sp1);
+        }
            
         }catch (IOException e) {
             
         }
             
-            
-//        for (int i = 0; i < 10; i++) {
-//
-//            
-//
-//
-//
-//
-//        }
-
-        // contentPane.add(p2);
-//        contentPane.add(p1, BorderLayout.NORTH);
-        // frame.add(p2);
-        // frame.setContentPane(contentPane);
+        
         this.add(contentPane);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

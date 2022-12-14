@@ -1,5 +1,5 @@
 [
-{"Name":"KFC","Dishes":["Cheering Box","Mega Rizo","Mighty Love"],"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
+{"Name":"KFC","Dishes":[{"Name":"Cheering Box","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1 cola <br/></html>","Price":"282.99"},
+{"Name":"xccc","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1 cola <br/></html>","Price":"282.99"}],"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
 {"Name":"Burger King","Dishes":["Whopper","Bacon King","CheeseBurger"],"Rate":"4.4","Desc":"Burgers","Time":"28"},
-
 ]
