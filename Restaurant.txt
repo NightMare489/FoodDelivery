@@ -1,5 +1,5 @@
 [
-	{"Name":"KFC","Dishes":
+{"Name":"KFC","Dishes":
 		[	
 			{"Name":"Cheering Box","desc":"<html>3 twister sandwiches, 6 pieces of chicken, family french fries and pepsi liter. </html>","Price":"282.99"},
 			{"Name":"Twister Charger Box","desc":"<html> Sandwich + Drink + 1 COB + Rice + Colelslaw </html>  ","Price":"114.00"},
@@ -12,23 +12,80 @@
 			{"Name":"Chicken Fillet Combo","desc":"<html> Chicken Fillet Sandwich + Fries + Drink  </html>","Price":"75.99"},
 			{"Name":"16 Pc Festive Bucket","desc":"<html> 16 pc chicken + 1 large coleslaw + family fries + 5 bun + 1 L Drink  </html>","Price":"464.00"},
 		]
-	,"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
-{"Name":"Burger King","Dishes":[{"Name":"Cheering Box","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1L Cola <br/></html>","Price":"282.99"},
-			{"Name":"Charger Box","desc":"<html> 1 Sandwich <br/>1 Drink <br/>1 Rice + Colelslaw <br/>1 Chicken piece </html>","Price":"114"}
-		],"Rate":"4.4","Desc":"Burgers","Time":"28"},
+        	,"Rate":"4.0","Desc":"Sandwitch , Fried Chicken","Time":"45"},
+
+
+
+{"Name":"Burger King","Dishes":
+		[
+			{"Name":"Double WHOPPER ® MEAL","desc":"<html>Double Whopper + Fries + Machine Cola </html>","Price":"120.00"},
+			{"Name":"Steakhouse Meal","desc":"<html>Steakhouse Meal + Fries + Machine Cola </html>","Price":"116.00"},
+			{"Name":"Mushroom N Swiss Meal","desc":"<html>Mushroom N Swiss Meal + Fries + Machine Cola</html>","Price":"91.00"},
+			{"Name":"Big King™ XL Meal","desc":"<html>Big King XL Meal + Fries + Machine Cola</html>","Price":"98.00"},
+			{"Name":"Chicken Royale Meal","desc":"<html>Chicken Royale Meal + Fries + Machine Cola</html>","Price":"81.00"},
+			{"Name":"Chicken Steakhouse Meal","desc":"<html>Chicken Steakhouse Meal + Fries + Machine Cola</html>","Price":"112.00"},
+			{"Name":"Crunchy Chicken Meal","desc":"<html>Crunchy Chicken Meal Steakhouse Meal + Fries + Machine Cola</html>","Price":"93.00"},
+			{"Name":"Chicken WHOPPER ® Meal","desc":"<html>Chicken WHOPPER Meal + Fries + Machine Cola</html>","Price":"99.00"},
+		],
+		"Rate":"3.3","Desc":"Burgers & Fast food","Time":"32"},
+
+
 
 {"Name":"Qasr Elsham","Dishes":[
-        {"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich  </html>","Price":"36.00"},
-        {"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich + fries  </html>","Price":"38.00"},
-        {"Name":"Chicken shawerma fatteh","desc":"<html> Chicken shawerma fatteh  </html>","Price":"55.00"},
-        {"Name":"Chicken shawerma fatteh","desc":"<html>  Chicken shawerma fatteh + mozzarella </html>","Price":"65.00"},
-        {"Name":"Arabic chicken meal","desc":"<html>Chopped shawarma sandwich + fries + garlic dip + pickles</html>","Price":"59.00"},
-        {"Name":"Mix Shawarma","desc":"<html>Chopped shawerma sandwich + crispy chicken breasts + fries + garlic dip + pickles</html>","Price":"85.00"},
-        {"Name":"Whole grilled chicken","desc":"<html>Whole grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread) </html>","Price":"159.00"},
-        {"Name":"Half a grilled chicken","desc":"<html>Half a grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread)</html>","Price":"87.00"},
-        {"Name":"Classic crispy saj","desc":"<html>Crispy chicken breasts - garlic dip - fries - ketchup - saj bread</html>","Price":"42.00"},
-        {"Name":"Spicy Fried Chicken","desc":"<html>Crispy chicken breasts - sweet chili sauce - cheddar sauce - pepper - jalapeno - lettuce</html>","Price":"62.00"},
+       		 	{"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich  </html>","Price":"36.00"},
+        		{"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich + fries  </html>","Price":"38.00"},
+        		{"Name":"Chicken shawerma fatteh","desc":"<html> Chicken shawerma fatteh  </html>","Price":"55.00"},
+        		{"Name":"Chicken shawerma fatteh","desc":"<html>  Chicken shawerma fatteh + mozzarella </html>","Price":"65.00"},
+        		{"Name":"Arabic chicken meal","desc":"<html>Chopped shawarma sandwich + fries + garlic dip + pickles</html>","Price":"59.00"},
+        		{"Name":"Mix Shawarma","desc":"<html>Chopped shawerma sandwich + crispy chicken breasts + fries + garlic dip + pickles</html>","Price":"85.00"},
+        		{"Name":"Whole grilled chicken","desc":"<html>Whole grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread) </html>","Price":"159.00"},
+        		{"Name":"Half a grilled chicken","desc":"<html>Half a grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread)</html>","Price":"87.00"},
+        		{"Name":"Classic crispy saj","desc":"<html>Crispy chicken breasts - garlic dip - fries - ketchup - saj bread</html>","Price":"42.00"},
+        		{"Name":"Spicy Fried Chicken","desc":"<html>Crispy chicken breasts - sweet chili sauce - cheddar sauce - pepper - jalapeno - lettuce</html>","Price":"62.00"},
+		],
+		"Rate":"4.2","Desc":"Shawrma","Time":"60"},
 
-				],
+
+
+{"Name":"Domino's Pizza","Dishes":[
+            		{"Name":"Philly Cheese Steak","desc":"<html>Tender slices of Philly steak with a blend of melted cheese, onions, green peppers & mushrooms</html>","Price":"160.00"},
+            		{"Name":"Chicken Legend BBQ","desc":"<html>Pure breast grilled chicken, onions, mozzarella cheese,BBQ sauce</html>","Price":"158.00"},
+            		{"Name":"Chicken Legend Hot","desc":"<html>Pure breast grilled chicken, onions, mozzarella cheese,hot sauce.</html>","Price":"159.00"},
+            		{"Name":"Chicken Legend Ranch","desc":"<html>Pure breast grilled chicken, onions, mozzarella cheese,ranch sauce.</html>","Price":"157.00"},
+            		{"Name":"Ultimate Pepperoni","desc":"<html>Your Favorite Pepperoni pizza with extra layer of Pepperoni and cheese.</html>","Price":"155.00"},
+            		{"Name":"Italiano Feast","desc":"<html>Beef pepperoni, mushrooms and Italiano sausage</html>","Price":"155.00"},
+            		{"Name":"Barbecue Feast","desc":"<html>Marinated chicken, BBQ sauce with onions</html>","Price":"155.00"},
+            		{"Name":"Meatzza Feast","desc":"<html>Beef pepperoni, Italian sausage & beef</html>","Price":"155.00"},
+            		{"Name":"Veggie Feast","desc":"<html>Green peppers, onions, mushrooms, and black olives</html>","Price":"150.00"},
+            		{"Name":"Pepperoni Feast","desc":"<html>Beef Pepperoni with Mozzarella and Domino’s special sauce</html>","Price":"150.00"},
+            		{"Name":"Hot & Spicy Feast","desc":"<html>Beef, onions and jalapenos</html>","Price":"150.00"},
+	  	],
 		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+
+
+{"Name":"McDonald's","Dishes":[
+			{"Name":"Big Mac® Large Meal","desc":"<html>Big Mac® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"88.00"},
+			{"Name":"Big Tasty® Large Meal","desc":"<html>Big Tasty® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"137.00"},
+			{"Name":"McRoyale ®Large Meal","desc":"<html>McRoyale® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"125.00"},
+			{"Name":"Mushroom Beef Large Meal","desc":"<html>Mushroom Beef Sandwich + Large McFries®</html>","Price":"125.00"},
+			{"Name":"Chili Chicken Large Meal","desc":"<html>Chili Chicken Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"112.00"},
+			{"Name":"Double McChicken","desc":"<html>Double McChicken® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"120.00"},
+			{"Name":"Grand Chicken Premier","desc":"<html>Grand Chicken Premier - Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"139.00"},
+			{"Name":"Chicken Fillet - Large Meal","desc":"<html>Chicken Fillet - Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"115.00"},
+			{"Name":"Double Filet-O-Fish®","desc":"<html>Double Filet-O-Fish® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"121.00"},
+			{"Name":"Happy Meal®","desc":"<html>Double Cheeseburger + Happy Meal Toy + Coca-Cola + Small McFries®</html>","Price":"51.00"},
+		],
+		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+
+
+{"Name":"Kebda Elfala7","Dishes":[
+        		{"Name":"نص كبده اسكندرانى","desc":"<html>   </html>","Price":"6.00"},
+            		{"Name":"Ns sd2 askndrany","desc":"<html>   </html>","Price":"6.00"},
+            		{"Name":"T7ynah","desc":"<html>   </html>","Price":"3.00"},
+        		{"Name":"Tb2 kbdh","desc":"<html>  </html>","Price":"50.00"},
+            		{"Name":"Tb2 sdok","desc":"<html>   </html>","Price":"50.00"}
+		],
+		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+
+
 ]

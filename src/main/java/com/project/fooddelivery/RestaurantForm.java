@@ -64,7 +64,7 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
           mb.add(username);
           
           this.setJMenuBar(mb);   
-          this.setVisible(true);  
+//          this.setVisible(true);  
 
 //---------------------------
 
@@ -119,7 +119,6 @@ try{
 
         this.add(contentPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
         
         
     }
@@ -148,6 +147,7 @@ try{
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
