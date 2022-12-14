@@ -1,3 +1,5 @@
 [
-{"Name":"KFC","Dishes":["Cheering Box","Mega Rizo","Mighty Love","Yousef Box","sdgds","Cheering Box","Mega Rizo","Mighty Love","Yousef Box","sdgds"]}
+{"Name":"KFC","Dishes":["Cheering Box","Mega Rizo","Mighty Love"],"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
+{"Name":"Burger King","Dishes":["Whopper","Bacon King","CheeseBurger"],"Rate":"4.4","Desc":"Burgers","Time":"28"},
+
 ]

@@ -21,29 +21,37 @@ public class RestaurantPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    // private javax.swing.JPanel jPanel1;
     
     private javax.swing.JFrame frame;
+    private String Rname,Rate,desc,time;
     
     
-    public RestaurantPanel(javax.swing.JFrame frame){
+    
+    
+
+    public RestaurantPanel(boolean empty){
+
+    }
+
+    public RestaurantPanel(javax.swing.JFrame frame,String Rname,String Rate,String desc,String time){
         this.frame = frame;
+        this.Rname = Rname;
+        this.Rate = Rate;
+        this.desc = desc;
+        this.time = time;
+
         initComponents();
-    }
-    
-    public RestaurantPanel(String Rname,String Rate,String Iname,String desc,String time){
-        
-        
-        
         
     }
-    
+
+
     
     private void initComponents() {
         
         setPreferredSize(new Dimension(0, 105));
         
-        jPanel1 = new javax.swing.JPanel();
+        // jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,17 +59,16 @@ public class RestaurantPanel extends javax.swing.JPanel  {
         jLabel5 = new javax.swing.JLabel();
 
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\EL-YaMaMa\\Downloads\\Background (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("icons\\" + Rname + ".png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("KFC");
-        jLabel2.setToolTipText("");
+        jLabel2.setText(Rname);
 
-        jLabel3.setText("Sandwitch , Fried Chicken");
+        jLabel3.setText(desc);
 
-        jLabel4.setText("35 Min");
+        jLabel4.setText(time+" Min");
 
-        jLabel5.setText("4.5");
+        jLabel5.setText(Rate);
 
 //        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 //        this.setLayout(jPanel1Layout);
@@ -123,18 +130,20 @@ public class RestaurantPanel extends javax.swing.JPanel  {
             
             
             addMouseListener(new MouseAdapter() {
-                private Color background;
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                     new DishesForm("KFC").setVisible(true);
+                     DishesForm DF = new DishesForm(Rname);
+                     DF.setVisible(true);
+                     DF.setLocation(frame.getLocationOnScreen());
                      frame.setVisible(false);
+
                 }
             });
             
             
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
-        jPanel1.setLayout(jPanel1Layout);
+        setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -148,7 +157,7 @@ public class RestaurantPanel extends javax.swing.JPanel  {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 94, Short.MAX_VALUE)))
                 .addContainerGap())

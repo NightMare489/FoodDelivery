@@ -21,7 +21,7 @@ public class DishesPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    // private javax.swing.JPanel jPanel1;
     
     private javax.swing.JFrame frame;
     
@@ -44,7 +44,7 @@ public class DishesPanel extends javax.swing.JPanel  {
         
         setPreferredSize(new Dimension(0, 105));
         
-        jPanel1 = new javax.swing.JPanel();
+        // jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -135,7 +135,7 @@ public class DishesPanel extends javax.swing.JPanel  {
             
             
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
-        jPanel1.setLayout(jPanel1Layout);
+        setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()

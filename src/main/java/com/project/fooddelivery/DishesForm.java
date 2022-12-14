@@ -73,7 +73,7 @@ private String ResName="";
         final int FRAME_HEIGHT = 800;
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setTitle("Home Library");
+        this.setTitle("Dishes");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
@@ -156,7 +156,7 @@ private String ResName="";
         // frame.setContentPane(contentPane);
         this.add(contentPane);
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         
         

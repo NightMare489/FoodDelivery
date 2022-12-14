@@ -12,13 +12,20 @@ import java.awt.GridLayout;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.event.*;  
+import java.awt.event.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -65,10 +72,10 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
 
 
         final int FRAME_WIDTH = 555;
-        final int FRAME_HEIGHT = 800;
+        final int FRAME_HEIGHT = 810;
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setTitle("Home Library");
+        this.setTitle("Restaurants");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
@@ -105,21 +112,27 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(540, 905));
+        contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-
-            Color[] c = {Color.RED,Color.GREEN,Color.BLUE};
-        for (int i = 0; i < 10; i++) {
-
-            JPanel sp1 = new RestaurantPanel(this);
-            
-
-
-
-            p2.add(sp1);
-
+try{
+        String content = Files.readString(Paths.get("Restaurant.txt"));
+        JSONArray array = new JSONArray(content);  
+        for(int i=0; i < array.length(); i++)   
+        {  
+        JSONObject object = array.getJSONObject(i);
+        JPanel sp1 = new RestaurantPanel(this,object.getString("Name"),object.getString("Rate"),object.getString("Desc"),object.getString("Time"));
+        p2.add(sp1);
         }
+
+        for(int i=0;i<7-array.length();i++){
+            JPanel sp1 = new RestaurantPanel(false);
+            p2.add(sp1);
+        }
+
+    }catch (IOException e) {
+            
+    }
 
         // contentPane.add(p2);
 //        contentPane.add(p1, BorderLayout.NORTH);
@@ -127,7 +140,7 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
         // frame.setContentPane(contentPane);
         this.add(contentPane);
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         
         
