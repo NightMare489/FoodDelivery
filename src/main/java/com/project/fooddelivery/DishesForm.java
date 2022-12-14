@@ -144,12 +144,15 @@ private String ResName="";
             try{
             String content = Files.readString(Paths.get("Restaurant.txt"));
     
-            JSONArray array = new JSONArray(content);  
+            JSONArray array = new JSONArray(content); 
+            int numDishes=0;
             for(int i=0; i < array.length(); i++)   
             {  
             JSONObject object = array.getJSONObject(i);
+            
                 if(object.getString("Name").equals(ResName)){ 
                   JSONArray arr=  object.getJSONArray("Dishes");
+                  numDishes = arr.length();
                     for(int j=0;j<arr.length();j++){
                         String ob = "[";
                         ob +=arr.get(j).toString();
@@ -168,7 +171,7 @@ private String ResName="";
             }
             
             
-            for(int i=0;i<6-array.length();i++){
+            for(int i=0;i<6-numDishes;i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }

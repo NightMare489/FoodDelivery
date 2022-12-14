@@ -1,5 +1,34 @@
 [
-{"Name":"KFC","Dishes":[{"Name":"Cheering Box","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1 cola <br/></html>","Price":"282.99"},
-{"Name":"xccc","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1 cola <br/></html>","Price":"282.99"}],"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
-{"Name":"Burger King","Dishes":["Whopper","Bacon King","CheeseBurger"],"Rate":"4.4","Desc":"Burgers","Time":"28"},
+	{"Name":"KFC","Dishes":
+		[	
+			{"Name":"Cheering Box","desc":"<html>3 twister sandwiches, 6 pieces of chicken, family french fries and pepsi liter. </html>","Price":"282.99"},
+			{"Name":"Twister Charger Box","desc":"<html> Sandwich + Drink + 1 COB + Rice + Colelslaw </html>  ","Price":"114.00"},
+			{"Name":"Supreme Love","desc":"<html>2 supreme sandwich + 2 cole slaw + 1 litre pepsi  </html>","Price":"150.00"},
+			{"Name":"Supreme Box","desc":"<html>1 Supreme Sandwich + 1 pc Chicken + Small Coleslaw + 1 Large Rice + Drink </html>","Price":"129.99"},
+			{"Name":"Mighty Zinger Box","desc":"<html> 1 Mighty Zinger Sandwich + 1 pc Chicken + 1 Rice+ Coleslaw+ Drink Can</html>","Price":"150.00"},
+			{"Name":"Shrimp Box","desc":"<html> 7 pcs Shrimps + Small Coleslaw + Small Fries + Rice + Bun + 2 Sauces + Drink  </html>","Price":"128.00"},
+			{"Name":"Super Dinner Strips","desc":"<html> 6 Strips+ Fries + Coleslaw + Bun + Drink  </html>","Price":"134.00"},
+			{"Name":"Chicken Zinger Combo","desc":"<html> Chicken Zinger Sandwich + Fries + Drink </html>","Price":"76.00"},
+			{"Name":"Chicken Fillet Combo","desc":"<html> Chicken Fillet Sandwich + Fries + Drink  </html>","Price":"75.99"},
+			{"Name":"16 Pc Festive Bucket","desc":"<html> 16 pc chicken + 1 large coleslaw + family fries + 5 bun + 1 L Drink  </html>","Price":"464.00"},
+		]
+	,"Rate":"4.5","Desc":"Sandwitch , Fried Chicken","Time":"35"},
+{"Name":"Burger King","Dishes":[{"Name":"Cheering Box","desc":"<html>3 twistser sandwiches<br/> 6 pieces chicken<br/> 1L Cola <br/></html>","Price":"282.99"},
+			{"Name":"Charger Box","desc":"<html> 1 Sandwich <br/>1 Drink <br/>1 Rice + Colelslaw <br/>1 Chicken piece </html>","Price":"114"}
+		],"Rate":"4.4","Desc":"Burgers","Time":"28"},
+
+{"Name":"Qasr Elsham","Dishes":[
+        {"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich  </html>","Price":"36.00"},
+        {"Name":"Chicken shawarma","desc":"<html> Chicken shawarma sandwich + fries  </html>","Price":"38.00"},
+        {"Name":"Chicken shawerma fatteh","desc":"<html> Chicken shawerma fatteh  </html>","Price":"55.00"},
+        {"Name":"Chicken shawerma fatteh","desc":"<html>  Chicken shawerma fatteh + mozzarella </html>","Price":"65.00"},
+        {"Name":"Arabic chicken meal","desc":"<html>Chopped shawarma sandwich + fries + garlic dip + pickles</html>","Price":"59.00"},
+        {"Name":"Mix Shawarma","desc":"<html>Chopped shawerma sandwich + crispy chicken breasts + fries + garlic dip + pickles</html>","Price":"85.00"},
+        {"Name":"Whole grilled chicken","desc":"<html>Whole grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread) </html>","Price":"159.00"},
+        {"Name":"Half a grilled chicken","desc":"<html>Half a grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread)</html>","Price":"87.00"},
+        {"Name":"Classic crispy saj","desc":"<html>Crispy chicken breasts - garlic dip - fries - ketchup - saj bread</html>","Price":"42.00"},
+        {"Name":"Spicy Fried Chicken","desc":"<html>Crispy chicken breasts - sweet chili sauce - cheddar sauce - pepper - jalapeno - lettuce</html>","Price":"62.00"},
+
+				],
+		"Rate":"4.4","Desc":"Burgers","Time":"28"},
 ]

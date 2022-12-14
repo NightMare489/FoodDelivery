@@ -72,18 +72,7 @@ public class DishesPanel extends javax.swing.JPanel  {
 
             
             
-            
-            addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                     DishesForm DF = new DishesForm("KFC");
-                     DF.setVisible(true);
-                     DF.setLocation(frame.getLocationOnScreen());
-                     frame.setVisible(false);
-
-                }
-            });
+          
             
             
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(this);
@@ -100,7 +89,7 @@ public class DishesPanel extends javax.swing.JPanel  {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -120,7 +109,7 @@ public class DishesPanel extends javax.swing.JPanel  {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)))
                 .addComponent(jLabel5)
-                .addGap(14, 14, 14))
+            )//.addGap(14, 14, 14))
         );
 
         
