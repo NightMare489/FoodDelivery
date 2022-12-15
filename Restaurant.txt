@@ -115,4 +115,30 @@
 		],
 		"Rate":"3.6","Desc":"Ice Cream","Time":"30"},
 
+
+
+{"Name":"Gad","Dishes":[
+        		{"Name":"Foul & Mixture Sandwich","desc":"<html> foul, green salad, sesame paste salad and oil in shami bread</html>","Price":"8.00"},
+            		{"Name":"Stuffed Falafel Sandwich","desc":"<html>  falafel patty stuffed chilli, green salad, sesame salad. </html>","Price":"9.00"},
+            		{"Name":"Shami Fries Sandwich","desc":"<html> fries, green salad and sesame paste  </html>","Price":"15.00"},
+        		{"Name":"Boiled Eggs Sandwich","desc":"<html> Boiled egg, green salad and sesame paste salad, served in Shami bread </html>","Price":"12.00"},
+			{"Name":"Omelette & Pastrami Sand.","desc":"<html> Omelette and pastrami, served in Shami bread </html>","Price":"19.00"},
+			{"Name":"Mesakaa Box","desc":"<html> Large. </html>","Price":"22.00"},
+			{"Name":"Molokhia","desc":"<html> Molokhia box </html>","Price":"45.00"},
+			{"Name":"Hawawshi & Minced Meat","desc":"<html>  </html>","Price":"55.00"},
+			{"Name":"Mesakaa Sandwich","desc":"<html> Eggplant, potatoes, tomato, pepper, onion and tomato sauce </html>","Price":"13.00"},
+		],
+		"Rate":"3.3","Desc":"<html> Sandwiches, Breakfast, Foul </html>","Time":"43"},
+
+
+
+
+{"Name":"","Dishes":[
+        		{"Name":"","desc":"<html>   </html>","Price":""},
+            		{"Name":"","desc":"<html>   </html>","Price":""},
+            		{"Name":"","desc":"<html>   </html>","Price":""},
+        		{"Name":"","desc":"<html>  </html>","Price":""}
+		],
+		"Rate":"","Desc":"","Time":""},
+
 ]
