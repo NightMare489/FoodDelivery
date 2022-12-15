@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -201,6 +202,26 @@ private JMenuItem i1, i2, i3, i4, i5,i6,back,username;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        if(FoodDelivery.user.getPassword().equals(jPasswordField1.getText())){
+            
+            if(jPasswordField2.getText().isEmpty()){
+                JOptionPane.showMessageDialog(this, "New password can't be empty",
+            "Invalid Data", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            FoodDelivery.user.setPassword(jPasswordField2.getText());
+            FoodDelivery.user.UpdateUser();
+            JOptionPane.showMessageDialog(this, "Password updated Successfully",
+            "Invalid Data", JOptionPane.INFORMATION_MESSAGE);
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Passwords doesn't match",
+            "Invalid Data", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed

@@ -53,7 +53,7 @@ private String ResName="";
           menu=new JMenu("☰");  
           submenu=new JMenu("Sub Menu");  
           i1=new JMenuItem("Order History");  
-          i2=new JMenuItem("My Favourites");  
+          i2=new JMenuItem("My Cart");  
           i3=new JMenuItem("Logout"); 
           i6 = new JMenuItem("My Profile");
           

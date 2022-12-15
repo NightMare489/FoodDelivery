@@ -17,7 +17,7 @@ import javax.swing.border.LineBorder;
  *
  * @author EL-YaMaMa
  */
-public class DishesPanel extends javax.swing.JPanel  {
+public class CartPanel extends javax.swing.JPanel  {
     
     
   
@@ -32,7 +32,7 @@ public class DishesPanel extends javax.swing.JPanel  {
     private Dish dish;
     
     private String ResName;
-    public DishesPanel(javax.swing.JFrame frame,Dish dish){
+    public CartPanel(javax.swing.JFrame frame,Dish dish){
         this.dish = dish;
         this.frame = frame;
         initComponents();
