@@ -60,7 +60,7 @@
             		{"Name":"Pepperoni Feast","desc":"<html>Beef Pepperoni with Mozzarella and Domino’s special sauce</html>","Price":"150.00"},
             		{"Name":"Hot & Spicy Feast","desc":"<html>Beef, onions and jalapenos</html>","Price":"150.00"},
 	  	],
-		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+		"Rate":"3.7","Desc":"Pizza","Time":"45"},
 
 
 {"Name":"McDonald's","Dishes":[
@@ -75,7 +75,7 @@
 			{"Name":"Double Filet-O-Fish®","desc":"<html>Double Filet-O-Fish® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"121.00"},
 			{"Name":"Happy Meal®","desc":"<html>Double Cheeseburger + Happy Meal Toy + Coca-Cola + Small McFries®</html>","Price":"51.00"},
 		],
-		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+		"Rate":"4.0","Desc":"Burger & chicken sandwiches","Time":"30"},
 
 
 {"Name":"Kebda Elfala7","Dishes":[
@@ -85,7 +85,7 @@
         		{"Name":"طبق كبده","desc":"<html>  </html>","Price":"50.00"},
             		{"Name":"طبق سدق","desc":"<html>   </html>","Price":"50.00"}
 		],
-		"Rate":"4.4","Desc":"Burgers","Time":"28"},
+		"Rate":"4.1","Desc":"كبده وسدق","Time":"55"},
 
 
 ]
