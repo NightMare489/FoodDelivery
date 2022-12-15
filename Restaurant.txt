@@ -10,7 +10,7 @@
 			{"Name":"Super Dinner Strips","desc":"<html> 6 Strips+ Fries + Coleslaw + Bun + Drink  </html>","Price":"134.00"},
 			{"Name":"Chicken Zinger Combo","desc":"<html> Chicken Zinger Sandwich + Fries + Drink </html>","Price":"76.00"},
 			{"Name":"Chicken Fillet Combo","desc":"<html> Chicken Fillet Sandwich + Fries + Drink  </html>","Price":"75.99"},
-			{"Name":"16 Pc Festive Bucket","desc":"<html> 16 pc chicken + 1 large coleslaw + family fries + 5 bun + 1 L Drink  </html>","Price":"464.00"},
+			{"Name":"16 Pc Festive Bucket","desc":"<html> 16 pc chicken + 1 large coleslaw + family fries + 5 bun + 1 L Drink  </html>","Price":"464.00"}
 		]
         	,"Rate":"4.0","Desc":"Sandwitch , Fried Chicken","Time":"45"},
 
@@ -25,7 +25,7 @@
 			{"Name":"Chicken Royale Meal","desc":"<html>Chicken Royale Meal + Fries + Machine Cola</html>","Price":"81.00"},
 			{"Name":"Chicken Steakhouse Meal","desc":"<html>Chicken Steakhouse Meal + Fries + Machine Cola</html>","Price":"112.00"},
 			{"Name":"Crunchy Chicken Meal","desc":"<html>Crunchy Chicken Meal Steakhouse Meal + Fries + Machine Cola</html>","Price":"93.00"},
-			{"Name":"Chicken WHOPPER ® Meal","desc":"<html>Chicken WHOPPER Meal + Fries + Machine Cola</html>","Price":"99.00"},
+			{"Name":"Chicken WHOPPER ® Meal","desc":"<html>Chicken WHOPPER Meal + Fries + Machine Cola</html>","Price":"99.00"}
 		],
 		"Rate":"3.3","Desc":"Burgers & Fast food","Time":"32"},
 
@@ -41,7 +41,7 @@
         		{"Name":"Whole grilled chicken","desc":"<html>Whole grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread) </html>","Price":"159.00"},
         		{"Name":"Half a grilled chicken","desc":"<html>Half a grilled chicken with (Fries + garlic dip + pickles + basmati rice + bread)</html>","Price":"87.00"},
         		{"Name":"Classic crispy saj","desc":"<html>Crispy chicken breasts - garlic dip - fries - ketchup - saj bread</html>","Price":"42.00"},
-        		{"Name":"Spicy Fried Chicken","desc":"<html>Crispy chicken breasts - sweet chili sauce - cheddar sauce - pepper - jalapeno - lettuce</html>","Price":"62.00"},
+        		{"Name":"Spicy Fried Chicken","desc":"<html>Crispy chicken breasts - sweet chili sauce - cheddar sauce - pepper - jalapeno - lettuce</html>","Price":"62.00"}
 		],
 		"Rate":"4.2","Desc":"Shawrma","Time":"60"},
 
@@ -58,7 +58,7 @@
             		{"Name":"Meatzza Feast","desc":"<html>Beef pepperoni, Italian sausage & beef</html>","Price":"155.00"},
             		{"Name":"Veggie Feast","desc":"<html>Green peppers, onions, mushrooms, and black olives</html>","Price":"150.00"},
             		{"Name":"Pepperoni Feast","desc":"<html>Beef Pepperoni with Mozzarella and Domino’s special sauce</html>","Price":"150.00"},
-            		{"Name":"Hot & Spicy Feast","desc":"<html>Beef, onions and jalapenos</html>","Price":"150.00"},
+            		{"Name":"Hot & Spicy Feast","desc":"<html>Beef, onions and jalapenos</html>","Price":"150.00"}
 	  	],
 		"Rate":"3.7","Desc":"Pizza","Time":"45"},
 
@@ -73,7 +73,7 @@
 			{"Name":"Grand Chicken Premier","desc":"<html>Grand Chicken Premier - Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"139.00"},
 			{"Name":"Chicken Fillet - Large Meal","desc":"<html>Chicken Fillet - Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"115.00"},
 			{"Name":"Double Filet-O-Fish®","desc":"<html>Double Filet-O-Fish® Sandwich + Large Coca-Cola + Large McFries®</html>","Price":"121.00"},
-			{"Name":"Happy Meal®","desc":"<html>Double Cheeseburger + Happy Meal Toy + Coca-Cola + Small McFries®</html>","Price":"51.00"},
+			{"Name":"Happy Meal®","desc":"<html>Double Cheeseburger + Happy Meal Toy + Coca-Cola + Small McFries®</html>","Price":"51.00"}
 		],
 		"Rate":"4.0","Desc":"Burger & chicken sandwiches","Time":"30"},
 
@@ -87,5 +87,15 @@
 		],
 		"Rate":"4.1","Desc":"كبده وسدق","Time":"55"},
 
+
+
+
+{"Name":"Koshary El Tahrir","Dishes":[
+        		{"Name":"Tahrir","desc":"<html>   </html>","Price":"25.00"},
+            		{"Name":"Top Tahrir","desc":"<html>   </html>","Price":"30.00"},
+            		{"Name":"Large Tahrir","desc":"<html>   </html>","Price":"35.00"},
+        		{"Name":"King Tahrir","desc":"<html>  </html>","Price":"45.00"}
+		],
+		"Rate":"4.1","Desc":"كبده وسدق","Time":"55"},
 
 ]
