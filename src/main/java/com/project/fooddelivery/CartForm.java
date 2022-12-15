@@ -45,7 +45,7 @@ JMenu username;
 
     public CartForm() {
         initComponents();
-        
+        ArrayList<Dish> dishes =  FoodDelivery.user.getCart().getCartArray();
         JMenu menu, submenu; 
         
           JMenuBar mb=new JMenuBar();  
@@ -90,7 +90,7 @@ JMenu username;
         final int FRAME_HEIGHT = 810;
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setTitle("Dishes");
+        this.setTitle("Dishes  (" + dishes.size() +" Items )");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         
@@ -115,7 +115,7 @@ JMenu username;
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 
-          ArrayList<Dish> dishes =  FoodDelivery.user.getCart().getCartArray();
+          
             
             
             
