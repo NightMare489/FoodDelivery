@@ -96,6 +96,6 @@
             		{"Name":"Large Tahrir","desc":"<html>   </html>","Price":"35.00"},
         		{"Name":"King Tahrir","desc":"<html>  </html>","Price":"45.00"}
 		],
-		"Rate":"4.1","Desc":"كبده وسدق","Time":"55"},
+		"Rate":"3.2","Desc":"Koshary","Time":"45"},
 
 ]
