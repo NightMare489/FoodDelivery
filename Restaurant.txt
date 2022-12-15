@@ -98,4 +98,21 @@
 		],
 		"Rate":"3.2","Desc":"Koshary","Time":"45"},
 
+
+
+
+{"Name":"Azza Ice Cream","Dishes":[
+        		{"Name":"Large Ice Cream Cup","desc":"<html>   </html>","Price":"20.00"},
+            		{"Name":"Umm Ali With Nuts","desc":"<html>   </html>","Price":"30.00"},
+            		{"Name":"Couscous With Nuts","desc":"<html>   </html>","Price":"30.00"},
+        		{"Name":"Umm Ali & Nuts & Qeshta","desc":"<html>  </html>","Price":"40.00"},
+			{"Name":"Sweet Potato & Ice Cream","desc":"<html>  </html>","Price":"20.00"},
+			{"Name":"Belila Magnona","desc":"<html> Belila, ice cream of your choice, cashew, peanut, pistachio, almonds, hazelnut and qeshta. </html>","Price":"40.00"},
+			{"Name":"Rice Pudding & Ice Cream","desc":"<html>Rice pudding, ice cream of your choice, mix nuts and qeshta  </html>","Price":"45.00"},
+			{"Name":"Shabah Umm Ali","desc":"<html> Umm ali, mix nuts, honey, and qeshta. </html>","Price":"50.00"},
+			{"Name":"Family Size Ice Cream 2","desc":"<html> 700 grams, served with 2 plain rice pudding </html>","Price":"80.00"},
+			{"Name":"Family Size Ice Cream 4","desc":"<html> Approximately 4.5 kilos. </html>","Price":"250.00"},
+		],
+		"Rate":"3.2","Desc":"Koshary","Time":"45"},
+
 ]
