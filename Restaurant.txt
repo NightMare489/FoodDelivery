@@ -80,10 +80,10 @@
 
 {"Name":"Kebda Elfala7","Dishes":[
         		{"Name":"نص كبده اسكندرانى","desc":"<html>   </html>","Price":"6.00"},
-            		{"Name":"Ns sd2 askndrany","desc":"<html>   </html>","Price":"6.00"},
-            		{"Name":"T7ynah","desc":"<html>   </html>","Price":"3.00"},
-        		{"Name":"Tb2 kbdh","desc":"<html>  </html>","Price":"50.00"},
-            		{"Name":"Tb2 sdok","desc":"<html>   </html>","Price":"50.00"}
+            		{"Name":"نص سدق اسكندرانى","desc":"<html>   </html>","Price":"6.00"},
+            		{"Name":"طحينه","desc":"<html>   </html>","Price":"3.00"},
+        		{"Name":"طبق كبده","desc":"<html>  </html>","Price":"50.00"},
+            		{"Name":"طبق سدق","desc":"<html>   </html>","Price":"50.00"}
 		],
 		"Rate":"4.4","Desc":"Burgers","Time":"28"},
 
