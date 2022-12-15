@@ -17,8 +17,13 @@ public class Cart {
 
     public void AddAndSavetoCart(Dish d){  
         cart.add(d); 
-        FoodDelivery.user.UpdateUser();
-         
+        FoodDelivery.user.UpdateUser();      
+    }
+    
+    
+    public void RemoveFromCartAndSave(Dish d){
+        cart.remove(d);
+        FoodDelivery.user.UpdateUser();   
     }
 
     public ArrayList<Dish> getCartArray() {
@@ -26,13 +31,26 @@ public class Cart {
     }
     
     
-                    
+    public void makeCartFromArray(JSONArray arr){
+        
+        for(int i=0;i<arr.length();i++){
+            
+            String s = "[" + arr.get(i).toString() + "]"; 
+            JSONArray array = new JSONArray(s);
+            JSONObject object = array.getJSONObject(0);         
+            Dish d = new Dish(object.getString("Name"),object.getString("desc"),object.getString("Price"));
+            cart.add(d); 
+        }
+        
+       
+
+    }
     
- 
+    
+    
 public JSONArray MakeJSONarray(){
         JSONArray CartArray = new JSONArray();
-        
-
+       
         for(int i=0;i<cart.size();i++){
           JSONObject obj = new JSONObject();
           obj.put("Name", cart.get(i).getName());
@@ -41,7 +59,6 @@ public JSONArray MakeJSONarray(){
           CartArray.put(obj);
           
         }
-        
        
         return CartArray;
     }

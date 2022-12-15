@@ -30,12 +30,15 @@ public class DishesPanel extends javax.swing.JPanel  {
     
     private javax.swing.JFrame frame;
     private Dish dish;
+    private boolean isCart;
     
     private String ResName;
-    public DishesPanel(javax.swing.JFrame frame,Dish dish){
+    public DishesPanel(javax.swing.JFrame frame,Dish dish , boolean isCart){
         this.dish = dish;
         this.frame = frame;
+        this.isCart = isCart;
         initComponents();
+        
     }
     
 
@@ -63,11 +66,27 @@ public class DishesPanel extends javax.swing.JPanel  {
         jLabel5.setText(dish.getPrice() + " EGP");
 
         
-        
+        if(!isCart){
         jButton1.setText("Add to Cart");
+        }else{
+        jButton1.setText("Remove");
+        }
+        
         jButton1.addActionListener(new ActionListener() { 
         public void actionPerformed(ActionEvent e) { 
+            
+            if(!isCart){
                FoodDelivery.user.getCart().AddAndSavetoCart(dish);
+            }else{
+            FoodDelivery.user.getCart().RemoveFromCartAndSave(dish);
+            
+            CartForm cf = new CartForm();
+            cf.setVisible(true);
+            cf.setLocation(frame.getLocationOnScreen());
+            frame.setVisible(false);
+            
+            
+            }
         } 
       } );
     

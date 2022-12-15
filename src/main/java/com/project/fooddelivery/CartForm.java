@@ -111,7 +111,7 @@ JMenu username;
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(540, 740));
+        contentPane.setPreferredSize(new Dimension(540, 650));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 
@@ -123,7 +123,7 @@ JMenu username;
             {  
  
            
-          JPanel sp1 = new DishesPanel(this,dishes.get(i));
+          JPanel sp1 = new DishesPanel(this,dishes.get(i),true);
                                        p2.add(sp1);
 
                     

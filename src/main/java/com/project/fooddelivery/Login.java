@@ -4,6 +4,7 @@
  */
 package com.project.fooddelivery;
 
+import java.awt.Point;
 import javax.swing.JOptionPane;
 
 /**
@@ -116,9 +117,10 @@ public class Login extends javax.swing.JFrame  {
         User user = new User(TFusername.getText(),TFpassword.getText());
         if(user.ValidateUser()){
         FoodDelivery.user = user;
-        RestaurantForm JframeLogin = new RestaurantForm();
-        JframeLogin.setVisible(true);
-        JframeLogin.setLocation(this.getLocationOnScreen());
+        RestaurantForm JRestaurantForm = new RestaurantForm();
+        JRestaurantForm.setVisible(true);
+        Point Location = new Point(this.getLocationOnScreen().x,1);
+        JRestaurantForm.setLocation(Location);
         this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this, "Incorrect username or password",

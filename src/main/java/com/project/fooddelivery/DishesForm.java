@@ -139,7 +139,7 @@ private String ResName="";
                         Dish dish = new Dish(JSobj.getString("Name"),JSobj.getString("desc"),JSobj.getString("Price"));
                         
            
-                           JPanel sp1 = new DishesPanel(this,dish);
+                           JPanel sp1 = new DishesPanel(this,dish,false);
                                        p2.add(sp1);
 
                     }
@@ -148,7 +148,7 @@ private String ResName="";
             }
             
             
-            for(int i=0;i<6-numDishes;i++){
+            for(int i=0;i<7-numDishes;i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }

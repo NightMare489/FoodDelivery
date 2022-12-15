@@ -141,6 +141,7 @@ public class User implements FileIO {
                     creditCard = new CreditCard().makeCreditCardFromArray(object.getJSONArray("CreditCard"));
                     Email = object.getString("Email");
                     PhoneNumber = object.getString("PhoneNumber");
+                    cart.makeCartFromArray(object.getJSONArray("Cart"));
                     return true;
                 }
             }
