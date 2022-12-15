@@ -111,17 +111,19 @@ JMenu username;
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setPreferredSize(new Dimension(540, 650));
+        contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 
           
-            
-            
+            double DSubTotal=0,DTotalPrice=0;
+            String SSubTotal="",STotalPRice="",VAT="";
             
             for(int i=0; i < dishes.size(); i++)   
             {  
- 
+               
+            DSubTotal+=Double.parseDouble(dishes.get(i).getPrice());
+            
            
           JPanel sp1 = new DishesPanel(this,dishes.get(i),true);
                                        p2.add(sp1);
@@ -131,14 +133,20 @@ JMenu username;
                 
             }
             
-            
+            DTotalPrice = DSubTotal + 20.0;
             
             for(int i=0;i<6-dishes.size();i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
            
-            
+            SSubTotal += DSubTotal;
+            STotalPRice += DTotalPrice;
+            VAT += (DSubTotal * 0.14);
+            if(!dishes.isEmpty()){
+            JPanel sp2 = new CheckOutPanel(this,SSubTotal,STotalPRice,VAT);
+            p2.add(sp2);
+            }
         
         this.add(contentPane);
 

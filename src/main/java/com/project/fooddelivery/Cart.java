@@ -21,6 +21,13 @@ public class Cart {
     }
     
     
+      public void ClearCart(){  
+        cart.clear();
+        FoodDelivery.user.UpdateUser();      
+    }
+    
+    
+    
     public void RemoveFromCartAndSave(Dish d){
         cart.remove(d);
         FoodDelivery.user.UpdateUser();   
