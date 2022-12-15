@@ -1,4 +1,4 @@
 [
-{"Email":"yasershaban03@hotmil.com","PhoneNumber":"yaseran","CreditCard":["1234567891234567","489","05","2024"],"Name":"Amr","Password":"123"},
+{"Email":"amrashraf72002@gmail.com","PhoneNumber":"yaseran","CreditCard":["1234567891234567","489","05","2024"],"Name":"Amr","Password":"123"},
 
 ]

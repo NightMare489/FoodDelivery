@@ -33,7 +33,7 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
     /**
      * Creates new form RestaurantForm
      */
-              JMenuItem i1, i2, i3, i4, i5;  
+              JMenuItem i1, i2, i3, i4, i5,i6;  
 
     public RestaurantForm() {
         initComponents();
@@ -45,13 +45,14 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
           submenu=new JMenu("Sub Menu");  
           i1=new JMenuItem("Order History");  
           i2=new JMenuItem("My Favourites");  
-          i3=new JMenuItem("Logout");  
+          i3=new JMenuItem("Logout");
+          i6 = new JMenuItem("My Profile");
           
           i1.addActionListener(this);  
           i3.addActionListener(this);   
-
+          i6.addActionListener(this);
           
-          menu.add(i1); menu.add(i2); menu.add(i3);  
+           menu.add(i6); menu.add(i1); menu.add(i2); menu.add(i3);  
 //          submenu.add(i4); submenu.add(i5);  
 //          menu.add(submenu); 
 //          menu.add(submenu);  
@@ -132,6 +133,14 @@ try{
         JframeLogin.setLocation(this.getLocationOnScreen());
         this.setVisible(false);
         }
+        
+        if(e.getSource() == i6){
+            AccountFrame Acc = new AccountFrame();
+            Acc.setVisible(true);
+            Acc.setLocation(getLocationOnScreen());
+            setVisible(false);
+        }
+        
 }     
     /**
      * This method is called from within the constructor to initialize the form.
