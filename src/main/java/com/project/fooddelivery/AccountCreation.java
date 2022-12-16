@@ -9,8 +9,9 @@ import javax.swing.text.NumberFormatter;
 public class AccountCreation extends javax.swing.JFrame {
 
     public AccountCreation() {
-        initComponents();
+        initComponents(); // Show GUI
         this.setTitle("Create Account");
+        //********To make year accept only integers between next year and 10 more years ***********//
         NumberFormat YearFormat = new  java.text.DecimalFormat("#0");
         NumberFormatter YearFormatter = new NumberFormatter(YearFormat);
 
@@ -255,7 +256,7 @@ public class AccountCreation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BbackLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BbackLoginActionPerformed
-
+        //********Go back to login ***********//
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
@@ -264,7 +265,7 @@ public class AccountCreation extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BbackLoginActionPerformed
 
-
+//********To remove - between phone number and credit card number ***********//
     private String ParseMask(String s){
         String out="";
         for(int i=0;i<s.length();i++){
@@ -312,14 +313,15 @@ public class AccountCreation extends javax.swing.JFrame {
             "Invalid Data", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //********create new credit card from entered data ***********//
         CreditCard creditCard = new CreditCard(cardnumber, CCV, expMonth, expYear);
         User user = new User(username,password,Email,PhoneNumber,creditCard);
-        String RegStatus = user.RegisterUser();
+        String RegStatus = user.RegisterUser(); // Check if register was successful and isn't in the database
         if(RegStatus.equals("Account registered successfully")){
             JOptionPane.showMessageDialog(this, RegStatus,
             "Success", JOptionPane.INFORMATION_MESSAGE);
             
+            //********return to login page after successful regestration***********//
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());

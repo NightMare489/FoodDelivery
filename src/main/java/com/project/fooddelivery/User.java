@@ -64,7 +64,7 @@ public class User {
 
 
     public void UpdateUser(){
-        
+        //******** ubdate data of user  ***********//
         try {
             String content = Files.readString(Paths.get("Users.txt"));
             FileWriter Writer = new FileWriter("Users.txt");
@@ -72,8 +72,10 @@ public class User {
             JSONArray array = new JSONArray(content);  
             for(int i=0; i < array.length(); i++)   
             {  
+                // Get all data from file and parse to json
             JSONObject object = array.getJSONObject(i);
                 if(object.getString("Name").equals(this.Name)){
+                    //Update Current user.
                     JSONObject obj = new JSONObject();
                     JSONArray CreditCardArray = creditCard.MakeJSONarray();
                     JSONArray CartArray = cart.MakeJSONarray();
@@ -91,6 +93,7 @@ public class User {
                     Writer.write(",\n");
 
                 }else{   
+                    //write other users
                         Writer.write(array.getJSONObject(i).toString());
                         Writer.write(",\n");
                 }
@@ -109,6 +112,7 @@ public class User {
 
     public boolean ValidateUser(){
         try{
+            //******** chaeck when login to validate user ***********//
             String content = Files.readString(Paths.get("Users.txt"));
     
             JSONArray array = new JSONArray(content);  
@@ -136,6 +140,7 @@ public class User {
 
     public String RegisterUser(){
         try {
+            //******** when create new account ***********//
             String content = Files.readString(Paths.get("Users.txt"));
     
             JSONArray array = new JSONArray(content);  

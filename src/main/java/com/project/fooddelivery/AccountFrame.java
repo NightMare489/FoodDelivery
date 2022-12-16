@@ -14,8 +14,9 @@ public class AccountFrame extends javax.swing.JFrame implements ActionListener {
 private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;  
 
     public AccountFrame() {
-        initComponents();
+        initComponents(); // Create GUI
         this.setTitle("My Profile");
+        //********Create Menu bar ***********//
           JMenu menu;
         
           JMenuBar mb=new JMenuBar();  
@@ -25,7 +26,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
           My_Cart=new JMenuItem("My Cart"); 
           Logout=new JMenuItem("Logout"); 
           My_Profile = new JMenuItem("My Profile");
-          
+          //********Add listeners to buttons ***********//
           Order_History.addActionListener(this);  
           Logout.addActionListener(this);   
           My_Cart.addActionListener(this);
@@ -59,7 +60,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
         @Override
     public void actionPerformed(ActionEvent e) {
         
-        
+        //******** go to frame based on menu selection ***********//
         if(e.getSource() == Order_History){
             OrdersForm of = new OrdersForm();
             of.setVisible(true);
@@ -215,7 +216,8 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        //********** if passwords matches  ***********//
         
         if(FoodDelivery.user.getPassword().equals(jPasswordField1.getText())){
             
@@ -230,6 +232,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
             JOptionPane.showMessageDialog(this, "Password updated Successfully",
             "Invalid Data", JOptionPane.INFORMATION_MESSAGE);
             
+            //********Logou page after successfully change password***********//
             Login JframeLogin = new Login();
             JframeLogin.setVisible(true);
             JframeLogin.setLocation(this.getLocationOnScreen());

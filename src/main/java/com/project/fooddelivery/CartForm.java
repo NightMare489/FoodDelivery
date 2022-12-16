@@ -18,10 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class CartForm extends javax.swing.JFrame implements ActionListener {
-JMenuItem Order_History, My_Cart, Logout, i4, i5,My_Profile,back;  
+private JMenuItem Order_History, My_Cart, Logout, i4, i5,My_Profile,back;  
 
+//******** State of Action Button in Dishes ,Cart,Chackout And Order history ***********//
 private int state=0;
     public CartForm(Cart c, int state) {
+        
         this.state = state;
         initComponents();
         ArrayList<Dish> dishes =  c.getCartArray();
@@ -84,7 +86,7 @@ private int state=0;
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
-
+//******** to make object from dishes pannel ***********//
             for(int i=0; i < dishes.size(); i++)   
             {  
                      
@@ -93,13 +95,13 @@ private int state=0;
      
             }
             
-            
+            //******** to fill out cartframe with empty pannels ***********//
             
             for(int i=0;i<6-dishes.size();i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
-           
+           //******** make chackout pannel if cartpannel is not empty ***********//
             if(!dishes.isEmpty()){
             JPanel sp2 = new CheckOutPanel(this,c,state);
             p2.add(sp2);

@@ -89,7 +89,7 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
-
+        //******** take dishes content from resturent file objects ***********//
             try{
             String content = Files.readString(Paths.get("Restaurant.txt"));
     

@@ -48,6 +48,7 @@ public class CheckOutPanel extends javax.swing.JPanel  {
             Action_Button.hide();
         
         }else{
+        //******** CHeckout button that confarmed order and send cart objects to order history ***********//
         
         Action_Button.setBackground(new java.awt.Color(102, 102, 102));
         Action_Button.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 12));
@@ -71,6 +72,7 @@ public class CheckOutPanel extends javax.swing.JPanel  {
             }
         });
         }
+        //******** calculate invoice  of order  ***********//
         Sub_Total.setText( c.getSubTotal() +" EGP");
 
         Delivery_Fees_Label.setText("Delivery Fees: ");

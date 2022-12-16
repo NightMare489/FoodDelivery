@@ -9,10 +9,10 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     public Login() {
-        FoodDelivery.user = null;
+        FoodDelivery.user = null; // Will Contain user data after login.
         this.setTitle("Login");
-        initComponents();
-        setLocationRelativeTo(null);
+        initComponents(); // init GUI.
+        setLocationRelativeTo(null); // To show page in the middle.
         
         TFusername.addKeyListener(new KeyListener() {
 
@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
             @Override
             public void keyReleased(KeyEvent e) {  
             }
-
+        //********To Login by using enter key ***********//
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyChar() == KeyEvent.VK_ENTER){
@@ -44,7 +44,7 @@ public class Login extends javax.swing.JFrame {
             public void keyReleased(KeyEvent e) {
                 
             }
-
+            //********To Login by using enter key ***********//
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyChar() == KeyEvent.VK_ENTER){
@@ -139,12 +139,13 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//******** Method to validate user credintals ***********//
     private void LOGIN(){
-                User user = new User(TFusername.getText(),TFpassword.getText());
+        User user = new User(TFusername.getText(),TFpassword.getText()); // Create object of user with entered data
         if(user.ValidateUser()){
+            //******** Success Login ***********//
         FoodDelivery.user = user;
-        RestaurantForm JRestaurantForm = new RestaurantForm();
+        RestaurantForm JRestaurantForm = new RestaurantForm(); // View restaurant form.
         JRestaurantForm.setVisible(true);
         Point Location = new Point(this.getLocationOnScreen().x,1);
         JRestaurantForm.setLocation(Location);
@@ -162,6 +163,7 @@ LOGIN();
     }//GEN-LAST:event_BloginActionPerformed
 
     private void BnewaccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnewaccActionPerformed
+        //********Show create account page ***********//
         AccountCreation JframeAcc = new AccountCreation();
         JframeAcc.setVisible(true);
         JframeAcc.setLocation(this.getLocationOnScreen());

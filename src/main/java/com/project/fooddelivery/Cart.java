@@ -10,6 +10,7 @@ public class Cart {
   public Cart(){
       
   }
+  //******** To solve refrence object problem ***********//
     public Cart(Cart c){
       
       this.cart = (ArrayList<Dish>)c.cart.clone();
@@ -47,12 +48,11 @@ public class Cart {
      return String.format("%.2f", (DSubTotal * 0.14));
      
  }
-
+//******** Write all users data to file ***********//
     public void AddAndSavetoCart(Dish d){  
         cart.add(d); 
         FoodDelivery.user.UpdateUser();      
     }
-    
     
       public void ClearCart(){  
         cart.clear();
@@ -70,7 +70,7 @@ public class Cart {
         return cart;
     }
     
-    
+    //******** To convert JSON Objects to cart data ***********//
     public void makeCartFromArray(JSONArray arr){
         
         for(int i=0;i<arr.length();i++){
@@ -87,7 +87,7 @@ public class Cart {
     }
     
     
-    
+    //******** To convert cart data to JSON Objects ***********//
 public JSONArray MakeJSONarray(){
         JSONArray CartArray = new JSONArray();
        
