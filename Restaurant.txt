@@ -137,7 +137,7 @@
         		{"Name":"Chocolate Mini Volcano","desc":"<html> Fudge chocolate cake, stuffed with chocolate, topped with cocoa cream cheese.  </html>","Price":"85.00"},
             		{"Name":"Red Velvet Cupcake","desc":"<html> Red velvet cake and cream cheese icing topped with red velvet cake pieces.  </html>","Price":"28.00"},
             		{"Name":"Bueno Bomb Small Cake","desc":"<html> cake, chocolate sticks, vanilla, chocolate. Enough for 3:4 persons. </html>","Price":"275.00"},
-        		{"Name":"Nutella & Lotus Mini Cake","desc":"<html> Vanilla sponge cake, cheese cream, lotus paste, nutella chocolate and lotus biscuits. Enough for 1:2 persons. </html>","Price":"110.00"}
+        		{"Name":"Nutella & Lotus Mini Cake","desc":"<html> Vanilla sponge cake, cheese cream, lotus paste, nutella chocolate and lotus biscuits. </html>","Price":"110.00"}
 		],
 		"Rate":"3.9","Desc":"<html> Desserts, Cakes, Ice cream </html>","Time":"65"},
 

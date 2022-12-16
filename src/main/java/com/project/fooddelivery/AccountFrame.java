@@ -51,6 +51,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
         
         Lname2.setText(FoodDelivery.user.getName());
         LEmail2.setText(FoodDelivery.user.getEmail());
+        LPhone2.setText(FoodDelivery.user.getPhoneNumber());
 
         
     }
@@ -107,6 +108,8 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
         jPasswordField1 = new javax.swing.JPasswordField();
         LEmail4 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
+        LPhone = new javax.swing.JLabel();
+        LPhone2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -135,6 +138,10 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
         });
 
         LEmail4.setText("New Password:");
+
+        LPhone.setText("Phone:");
+
+        LPhone2.setText("N");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +174,11 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
                                 .addComponent(Lname1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Lname2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(22, 22, 22))))
+                        .addGap(22, 22, 22))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LPhone2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,13 +187,17 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Lname1)
                     .addComponent(Lname2))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LEmail1)
                     .addComponent(LEmail2))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LPhone)
+                    .addComponent(LPhone2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LEmail3)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,7 +206,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
                             .addComponent(LEmail4)
                             .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(23, 23, 23)
                         .addComponent(jButton1)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -215,6 +230,12 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
             JOptionPane.showMessageDialog(this, "Password updated Successfully",
             "Invalid Data", JOptionPane.INFORMATION_MESSAGE);
             
+            Login JframeLogin = new Login();
+            JframeLogin.setVisible(true);
+            JframeLogin.setLocation(this.getLocationOnScreen());
+            this.setVisible(false);
+            
+            
             
         }else{
             JOptionPane.showMessageDialog(this, "Passwords doesn't match",
@@ -233,6 +254,8 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
     private javax.swing.JLabel LEmail2;
     private javax.swing.JLabel LEmail3;
     private javax.swing.JLabel LEmail4;
+    private javax.swing.JLabel LPhone;
+    private javax.swing.JLabel LPhone2;
     private javax.swing.JLabel Lname1;
     private javax.swing.JLabel Lname2;
     private javax.swing.JButton jButton1;

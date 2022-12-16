@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     public Login() {
+        FoodDelivery.user = null;
         this.setTitle("Login");
         initComponents();
         setLocationRelativeTo(null);
