@@ -1,19 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.project.fooddelivery;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
-/**
- *
- * @author TheUltimateGamer
- */
 
- //super
 public class Cart {
   private  ArrayList<Dish> cart = new ArrayList();
+  
+  public Cart(){
+      
+  }
+    public Cart(Cart c){
+      
+      this.cart = (ArrayList<Dish>)c.cart.clone();
+      
+  }
+  
+      public void AddtoCart(Dish d){  
+        cart.add(d);     
+    }
+      
+      
+  public String getSubTotal(){
+      double DSubTotal=0;
+      String SSubTotal="";
+        for(int i=0; i < cart.size(); i++)   {          
+            DSubTotal+=Double.parseDouble(cart.get(i).getPrice());                      
+        }
+      SSubTotal += DSubTotal;
+
+    return SSubTotal;
+  }
+  
+ public String getTotal(){
+     String STotalPRice = "";
+     String T = getSubTotal();
+     double DTotalPrice = Double.parseDouble(T) + 20.0;
+     STotalPRice += DTotalPrice;
+            
+      return STotalPRice;
+  }
+ 
+ public String getVAT(){
+     String SSubTotal = getSubTotal();
+     double DSubTotal = Double.parseDouble(SSubTotal);
+     return String.format("%.2f", (DSubTotal * 0.14));
+     
+ }
 
     public void AddAndSavetoCart(Dish d){  
         cart.add(d); 

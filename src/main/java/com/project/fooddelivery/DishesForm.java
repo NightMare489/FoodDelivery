@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.project.fooddelivery;
 
 import java.awt.BorderLayout;
@@ -15,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,51 +19,37 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- *
- * @author EL-YaMaMa
- */
+
 public class DishesForm extends javax.swing.JFrame implements ActionListener {
-JMenuItem i1, i2, i3, i4, i5,i6,back;  
-JMenu username;
-// JLabel back;
-    /**
-     * Creates new form DishesForm
-     */
+private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;  
 
-private String ResName="";
-
-    public DishesForm(String ResName) {
-        initComponents();
-        this.ResName = ResName;
+    public DishesForm(String ResName,int state) {
         
-        JMenu menu, submenu; 
+        initComponents();
+        JMenu menu; 
         
           JMenuBar mb=new JMenuBar();  
-          menu=new JMenu("☰");  
-          submenu=new JMenu("Sub Menu");  
-          i1=new JMenuItem("Order History");  
-          i2=new JMenuItem("My Cart");  
-          i3=new JMenuItem("Logout"); 
-          i6 = new JMenuItem("My Profile");
+          menu=new JMenu("☰");   
+          Order_History=new JMenuItem("Order History");  
+          My_Cart=new JMenuItem("My Cart");  
+          Logout=new JMenuItem("Logout"); 
+          My_Profile = new JMenuItem("My Profile");
           
-          i1.addActionListener(this);  
-          i3.addActionListener(this);   
-          i6.addActionListener(this);
+          Order_History.addActionListener(this);  
+          My_Cart.addActionListener(this);
+          Logout.addActionListener(this);   
+          My_Profile.addActionListener(this);
           
 
           
-          menu.add(i6);menu.add(i1); menu.add(i2); menu.add(i3);  
-//          submenu.add(i4); submenu.add(i5);  
-//          menu.add(submenu); 
-//          menu.add(submenu);  
-          username =  new JMenu(FoodDelivery.user.getName());
+          menu.add(My_Profile);
+          menu.add(Order_History);
+          menu.add(My_Cart);
+          menu.add(Logout);  
+          
           back =  new JMenuItem("←");
           back.setMinimumSize(menu.getSize());
           back.setPreferredSize(menu.getSize());
@@ -75,17 +57,12 @@ private String ResName="";
           back.addActionListener(this);
 
 
-          mb.add(back);
-          mb.add(menu);
-          mb.add(new JLabel(" | "));
-          mb.add(username);
+         mb.add(back);
+         mb.add(menu);
+         mb.add(new JLabel(" |  "));
+         mb.add(new JLabel(FoodDelivery.user.getName()));
           
-          
-          
-          this.setJMenuBar(mb);     
-
-//---------------------------
-
+         this.setJMenuBar(mb);     
 
         final int FRAME_WIDTH = 555;
         final int FRAME_HEIGHT = 810;
@@ -100,7 +77,6 @@ private String ResName="";
 
         p2.setLayout(new GridLayout(-1, 1));
         p2.setBackground(Color.LIGHT_GRAY);
-        // p2.setPreferredSize(new Dimension(950, 800));
         p2.setAutoscrolls(true);
 
         JScrollPane scrollPane = new JScrollPane(p2);
@@ -108,16 +84,12 @@ private String ResName="";
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        // scrollPane.setBounds(0, 0, 950, 800);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-
-            Color[] c = {Color.RED,Color.GREEN,Color.BLUE};
-            
             try{
             String content = Files.readString(Paths.get("Restaurant.txt"));
     
@@ -135,19 +107,14 @@ private String ResName="";
                         ob +=arr.get(j).toString();
                         ob += "]";
                         JSONObject JSobj = new JSONArray(ob).getJSONObject(0);
-                        
                         Dish dish = new Dish(JSobj.getString("Name"),JSobj.getString("desc"),JSobj.getString("Price"));
-                        
-           
-                           JPanel sp1 = new DishesPanel(this,dish,false);
+                           JPanel sp1 = new DishesPanel(this,dish,state);
                                        p2.add(sp1);
-
                     }
                     
                 }
             }
-            
-            
+
             for(int i=0;i<7-numDishes;i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
@@ -169,8 +136,14 @@ private String ResName="";
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {    
-        if(e.getSource()==i3) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == Order_History){
+            OrdersForm of = new OrdersForm();
+            of.setVisible(true);
+            of.setLocation(getLocationOnScreen());
+            setVisible(false);
+       }
+        if(e.getSource()==Logout) {
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
@@ -184,22 +157,22 @@ private String ResName="";
             setVisible(false);
         }
         
-        if(e.getSource() == i6){
+                    if(e.getSource() == My_Cart){
+            CartForm cf = new CartForm(FoodDelivery.user.getCart(),1);
+            cf.setVisible(true);
+            cf.setLocation(getLocationOnScreen());
+            setVisible(false);
+                    }
+        
+        if(e.getSource() == My_Profile){
             AccountFrame Acc = new AccountFrame();
             Acc.setVisible(true);
             Acc.setLocation(getLocationOnScreen());
             setVisible(false);
         }
 
-        
-        
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -220,12 +193,6 @@ private String ResName="";
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-   
-    private javax.swing.JMenu jMenu1;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

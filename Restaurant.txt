@@ -67,7 +67,7 @@
 			{"Name":"Big Mac Large Meal","desc":"<html>Big Mac Sandwich + Large Coca-Cola + Large McFries</html>","Price":"88.00"},
 			{"Name":"Big Tasty Large Meal","desc":"<html>Big Tasty Sandwich + Large Coca-Cola + Large McFries</html>","Price":"137.00"},
 			{"Name":"McRoyale Large Meal","desc":"<html>McRoyale Sandwich + Large Coca-Cola + Large McFries</html>","Price":"125.00"},
-			{"Name":"Mushroom Beef Large Meal","desc":"<html>Mushroom Beef Sandwich + Large McFries®</html>","Price":"125.00"},
+			{"Name":"Mushroom Beef Large Meal","desc":"<html>Mushroom Beef Sandwich + Large McFries</html>","Price":"125.00"},
 			{"Name":"Chili Chicken Large Meal","desc":"<html>Chili Chicken Sandwich + Large Coca-Cola + Large McFries</html>","Price":"112.00"},
 			{"Name":"Double McChicken","desc":"<html>Double McChicken Sandwich + Large Coca-Cola + Large McFries</html>","Price":"120.00"},
 			{"Name":"Grand Chicken Premier","desc":"<html>Grand Chicken Premier - Sandwich + Large Coca-Cola + Large McFries</html>","Price":"139.00"},
