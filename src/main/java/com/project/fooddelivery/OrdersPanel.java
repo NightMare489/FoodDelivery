@@ -7,29 +7,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
 
-public class RestaurantPanel extends javax.swing.JPanel  {
+
+public class OrdersPanel extends javax.swing.JPanel  {
     private javax.swing.JLabel Icon;
-    private javax.swing.JLabel Name;
-    private javax.swing.JLabel Description;
-    private javax.swing.JLabel Time;
-    private javax.swing.JLabel Rate;
-    
+    private javax.swing.JLabel Order_Num;
+    private javax.swing.JLabel Items_Num;
+    private javax.swing.JLabel Price;
+
     
     private javax.swing.JFrame frame;
-    private Restaurant res;
+    private Cart c;
+    private int Number;
     
     
-    
-    
-
-    public RestaurantPanel(boolean empty){
-
-    }
-
-    public RestaurantPanel(javax.swing.JFrame frame,Restaurant res){
+    public OrdersPanel(javax.swing.JFrame frame,Cart c , int Number){
         this.frame = frame;
-        this.res = res;
-
+        this.c = c;
+        this.Number = Number;
         initComponents();
         
     }
@@ -39,36 +33,32 @@ public class RestaurantPanel extends javax.swing.JPanel  {
     private void initComponents() {
         
         setPreferredSize(new Dimension(0, 105));
-        
+     
         Icon = new javax.swing.JLabel();
-        Name = new javax.swing.JLabel();
-        Description = new javax.swing.JLabel();
-        Time = new javax.swing.JLabel();
-        Rate = new javax.swing.JLabel();
-
-
-        Icon.setIcon(new javax.swing.ImageIcon("icons\\" + res.getName() + ".png"));
-
-        Name.setFont(new java.awt.Font("Segoe UI", 0, 24));
-        Name.setText(res.getName());
-
-        Description.setText(res.getDesc());
-
-        Time.setText(res.getTime()+" Min");
-
-        Rate.setText(res.getRate());
-
-
-        this.setBorder(new LineBorder(Color.black));
-
+        Order_Num = new javax.swing.JLabel();
+        Items_Num = new javax.swing.JLabel();
+        Price = new javax.swing.JLabel();
         
-        addMouseListener(new MouseAdapter() {
+
+
+        Icon.setIcon(new javax.swing.ImageIcon("icons\\Checkout.png")); 
+
+        Order_Num.setFont(new java.awt.Font("Segoe UI", 0, 24)); 
+        Order_Num.setText("Order #"+Number);
+
+        Items_Num.setText("Items: " + c.getCartArray().size());
+
+        Price.setText("Total: "+ c.getTotal()+" EGP");
+
+            this.setBorder(new LineBorder(Color.black));
+            
+            addMouseListener(new MouseAdapter() {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                     DishesForm DF = new DishesForm(res.getName(),0);
-                     DF.setVisible(true);
-                     DF.setLocation(frame.getLocationOnScreen());
+                     CartForm cf = new CartForm(c,2);
+                     cf.setVisible(true);
+                     cf.setLocation(frame.getLocationOnScreen());
                      frame.setVisible(false);
 
                 }
@@ -85,13 +75,13 @@ public class RestaurantPanel extends javax.swing.JPanel  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Time, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Price, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Rate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        )
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Order_Num, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Items_Num, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 94, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -102,23 +92,16 @@ public class RestaurantPanel extends javax.swing.JPanel  {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Icon)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Name)
+                        .addComponent(Order_Num)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Description)
+                        .addComponent(Items_Num)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Time)
-                            .addComponent(Rate))))
+                            .addComponent(Price)
+                            )))
                 .addGap(10, 10, 10))
         );
-        
-        
-        
-        
       
-    }
-    
-    
-    
+    }  
     
 }

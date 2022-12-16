@@ -6,67 +6,63 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import java.awt.event.*;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class CartForm extends javax.swing.JFrame implements ActionListener {
-JMenuItem Order_History, My_Cart, Logout, i4, i5,My_Profile,back;  
+public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
 
-private int state=0;
-    public CartForm(Cart c, int state) {
-        this.state = state;
+   private JMenuItem Order_History, My_Cart, Logout, i4, i5,My_Profile,back;  
+
+    public OrdersForm() {
         initComponents();
-        ArrayList<Dish> dishes =  c.getCartArray();
-        JMenu menu; 
         
+         JMenu menu, submenu,username;  
+ 
           JMenuBar mb=new JMenuBar();  
           menu=new JMenu("☰");  
+          submenu=new JMenu("Sub Menu");  
           Order_History=new JMenuItem("Order History");  
           My_Cart=new JMenuItem("My Cart");  
-          Logout=new JMenuItem("Logout"); 
+          Logout=new JMenuItem("Logout");
           My_Profile = new JMenuItem("My Profile");
           
-          My_Cart.addActionListener(this); 
           Order_History.addActionListener(this);  
+          My_Cart.addActionListener(this);
           Logout.addActionListener(this);   
           My_Profile.addActionListener(this);
-          
-
-          
-          menu.add(My_Profile);
-          menu.add(Order_History);
-          menu.add(My_Cart);
-          menu.add(Logout);  
           
           back =  new JMenuItem("←");
           back.setMinimumSize(menu.getSize());
           back.setPreferredSize(menu.getSize());
           back.setMaximumSize(new Dimension(20, 20));
           back.addActionListener(this);
+          
+          menu.add(My_Profile); 
+          menu.add(Order_History);
+          menu.add(My_Cart);
+          menu.add(Logout);
+          mb.add(back);
+          mb.add(menu);
+          mb.add(new JLabel(" |  "));
+          mb.add(new JLabel(FoodDelivery.user.getName()));
+  
+        this.setJMenuBar(mb);   
 
-
-         mb.add(back);
-         mb.add(menu);
-         mb.add(new JLabel(" |  "));
-         mb.add(new JLabel(FoodDelivery.user.getName()));
-
-        this.setJMenuBar(mb);     
         final int FRAME_WIDTH = 555;
         final int FRAME_HEIGHT = 810;
 
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setTitle("Dishes  (" + dishes.size() +" Items )");
+        this.setTitle("Orders");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
-        
+  
         JPanel p2 = new JPanel();
 
 
@@ -76,83 +72,75 @@ private int state=0;
 
         JScrollPane scrollPane = new JScrollPane(p2);
         scrollPane.setHorizontalScrollBarPolicy(
-        JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(
-        JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         JPanel contentPane = new JPanel(new BorderLayout());
         contentPane.setPreferredSize(new Dimension(540, 740));
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
-            for(int i=0; i < dishes.size(); i++)   
-            {  
-                     
-                 JPanel sp1 = new DishesPanel(this,dishes.get(i),state);
-                 p2.add(sp1);
-     
-            }
-            
-            
-            
-            for(int i=0;i<6-dishes.size();i++){
+        ArrayList<Cart> od = FoodDelivery.user.getOrders().getOrders();
+        
+        
+        for(int i=0; i < od.size(); i++)   
+        {  
+        
+        JPanel sp1 = new OrdersPanel(this,od.get(i),i+1);
+        p2.add(sp1);
+        }
+
+        for(int i=0;i<7-od.size();i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
-           
-            if(!dishes.isEmpty()){
-            JPanel sp2 = new CheckOutPanel(this,c,state);
-            p2.add(sp2);
-            }
-        
-        this.add(contentPane);
 
+
+
+        this.add(contentPane);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == Order_History){
-            OrdersForm of = new OrdersForm();
-            of.setVisible(true);
-            of.setLocation(getLocationOnScreen());
-            setVisible(false);
-       }
-        if(e.getSource() == My_Cart){
-            CartForm cf = new CartForm(FoodDelivery.user.getCart(),1);
-            cf.setVisible(true);
-            cf.setLocation(getLocationOnScreen());
-            setVisible(false);
-        }
-                    
+    public void actionPerformed(ActionEvent e) {    
         if(e.getSource()==Logout) {
+          
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
         this.setVisible(false);
         }
-
         if(e.getSource()==back) {
             RestaurantForm jframeRestaurantForm = new RestaurantForm();
             jframeRestaurantForm.setVisible(true);
             jframeRestaurantForm.setLocation(getLocationOnScreen());
             setVisible(false);
         }
-        
         if(e.getSource() == My_Profile){
             AccountFrame Acc = new AccountFrame();
             Acc.setVisible(true);
             Acc.setLocation(getLocationOnScreen());
             setVisible(false);
         }
-
-    }
+            if(e.getSource() == My_Cart){
+            CartForm cf = new CartForm(FoodDelivery.user.getCart(),1);
+            cf.setVisible(true);
+            cf.setLocation(getLocationOnScreen());
+            setVisible(false);
+        }
+}     
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jMenu1 = new javax.swing.JMenu();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -165,12 +153,14 @@ private int state=0;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 317, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     // End of variables declaration//GEN-END:variables
 }

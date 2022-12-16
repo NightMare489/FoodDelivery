@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.project.fooddelivery;
 
 import java.awt.Dimension;
@@ -13,75 +10,77 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author EL-YaMaMa
- */
 public class AccountFrame extends javax.swing.JFrame implements ActionListener {
-private JMenuItem i1, i2, i3, i4, i5,i6,back,username;  
-    /**
-     * Creates new form AccountFrame
-     */
+private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;  
+
     public AccountFrame() {
         initComponents();
-        
-       JMenu menu, submenu; 
+        this.setTitle("My Profile");
+          JMenu menu;
         
           JMenuBar mb=new JMenuBar();  
           menu=new JMenu("☰");  
-          submenu=new JMenu("Sub Menu");  
-          i1=new JMenuItem("Order History");  
-          i2=new JMenuItem("My Favourites");  
-          i3=new JMenuItem("Logout"); 
-          i6 = new JMenuItem("My Profile");
+  
+          Order_History=new JMenuItem("Order History");    
+          My_Cart=new JMenuItem("My Cart"); 
+          Logout=new JMenuItem("Logout"); 
+          My_Profile = new JMenuItem("My Profile");
           
-          i1.addActionListener(this);  
-          i3.addActionListener(this);   
-          i6.addActionListener(this);
+          Order_History.addActionListener(this);  
+          Logout.addActionListener(this);   
+          My_Cart.addActionListener(this);
+          My_Profile.addActionListener(this);
           
+          menu.add(My_Profile);
+          menu.add(Order_History);
+          menu.add(My_Cart);
+          menu.add(Logout);  
 
-          
-          menu.add(i6);menu.add(i1); menu.add(i2); menu.add(i3);  
-//          submenu.add(i4); submenu.add(i5);  
-//          menu.add(submenu); 
-//          menu.add(submenu);  
-          username =  new JMenu(FoodDelivery.user.getName());
           back =  new JMenuItem("←");
           back.setMinimumSize(menu.getSize());
           back.setPreferredSize(menu.getSize());
           back.setMaximumSize(new Dimension(20, 20));
           back.addActionListener(this);
 
-
           mb.add(back);
           mb.add(menu);
-          mb.add(new JLabel(" | "));
-          mb.add(username);
-          
-          
+          mb.add(new JLabel(" |  "));
+          mb.add(new JLabel(FoodDelivery.user.getName()));
           
           this.setJMenuBar(mb);   
         
-        
-        
-        
         Lname2.setText(FoodDelivery.user.getName());
         LEmail2.setText(FoodDelivery.user.getEmail());
-        
+
         
     }
 
         @Override
-    public void actionPerformed(ActionEvent e) {    
-        if(e.getSource()==i3) {
-            System.out.println("yes");
+    public void actionPerformed(ActionEvent e) {
+        
+        
+        if(e.getSource() == Order_History){
+            OrdersForm of = new OrdersForm();
+            of.setVisible(true);
+            of.setLocation(getLocationOnScreen());
+            setVisible(false);
+       }
+        if(e.getSource() == My_Cart){
+            CartForm cf = new CartForm(FoodDelivery.user.getCart(),1);
+            cf.setVisible(true);
+            cf.setLocation(getLocationOnScreen());
+            setVisible(false);
+        }
+        
+        
+        if(e.getSource()==Logout) {
         Login JframeLogin = new Login();
         JframeLogin.setVisible(true);
         JframeLogin.setLocation(this.getLocationOnScreen());
         this.setVisible(false);
         }
         
-                if(e.getSource()==back) {
+        if(e.getSource()==back) {
             RestaurantForm jframeRestaurantForm = new RestaurantForm();
             jframeRestaurantForm.setVisible(true);
             jframeRestaurantForm.setLocation(getLocationOnScreen());
@@ -225,13 +224,10 @@ private JMenuItem i1, i2, i3, i4, i5,i6,back,username;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LEmail1;
     private javax.swing.JLabel LEmail2;

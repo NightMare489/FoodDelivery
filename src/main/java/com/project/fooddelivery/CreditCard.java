@@ -1,16 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.project.fooddelivery;
 import org.json.JSONArray;
 
-
-/**
- *
- * @author TheUltimateGamer
- */
-//interface
 public class CreditCard {
     private String Cardnum;
     private String CVV,ExpMonth;

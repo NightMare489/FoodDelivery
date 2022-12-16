@@ -1,27 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.project.fooddelivery;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject; 
 
-/**
- *
- * @author TheUltimateGamer
- */
 
- //subclass cart implements credit
-public class User implements FileIO {
+public class User {
     private String Name,password,Email,PhoneNumber;
     private CreditCard creditCard;
     private Cart cart = new Cart();
-
+    private Orders orders = new Orders();
     public Cart getCart() {
         return cart;
     }
@@ -67,17 +58,17 @@ public class User implements FileIO {
         this.password = password;
     }
 
-
-    public void WriteData(){
-       
+    public Orders getOrders() {
+        return orders;
     }
+
 
     public void UpdateUser(){
         
         try {
             String content = Files.readString(Paths.get("Users.txt"));
-            FileWriter myWriter = new FileWriter("Users.txt");
-            myWriter.write("[\n");
+            FileWriter Writer = new FileWriter("Users.txt");
+            Writer.write("[\n");
             JSONArray array = new JSONArray(content);  
             for(int i=0; i < array.length(); i++)   
             {  
@@ -86,62 +77,53 @@ public class User implements FileIO {
                     JSONObject obj = new JSONObject();
                     JSONArray CreditCardArray = creditCard.MakeJSONarray();
                     JSONArray CartArray = cart.MakeJSONarray();
-
+                    JSONArray OrdersArray = orders.MakeJSONarray();
                     obj.put("Name", Name);
                     obj.put("Password", password);
                     obj.put("Email", Email);
                     obj.put("PhoneNumber", PhoneNumber);
                     obj.put("CreditCard", CreditCardArray);
                     obj.put("Cart", CartArray);
+                    obj.put("Orders",OrdersArray);
                     
                     
-                    myWriter.write(obj.toString());
-                    myWriter.write(",\n");
+                    Writer.write(obj.toString());
+                    Writer.write(",\n");
 
                 }else{   
-                        myWriter.write(array.getJSONObject(i).toString());
-                        myWriter.write(",\n");
+                        Writer.write(array.getJSONObject(i).toString());
+                        Writer.write(",\n");
                 }
                 
             }
              
-            myWriter.write("]");
-            myWriter.close();
-            
+            Writer.write("]");
+            Writer.close();
 
-
-
-            
-
-    
         }catch (IOException e) {
     
         }
 
-
-        
     }
         
-    
-    
-    
-    
+
     public boolean ValidateUser(){
         try{
             String content = Files.readString(Paths.get("Users.txt"));
-    System.out.println(content);
+    
             JSONArray array = new JSONArray(content);  
             for(int i=0; i < array.length(); i++)   
             {  
             JSONObject object = array.getJSONObject(i);
-                System.out.println(object.getString("Name"));
-                System.out.println(object.getString("Password"));
+
             
                 if(object.getString("Name").equals(this.Name) && object.getString("Password").equals(this.password) ){           
                     creditCard = new CreditCard().makeCreditCardFromArray(object.getJSONArray("CreditCard"));
                     Email = object.getString("Email");
                     PhoneNumber = object.getString("PhoneNumber");
                     cart.makeCartFromArray(object.getJSONArray("Cart"));
+                    orders.makeOrdersFromArray(object.getJSONArray("Orders"));
+                    
                     return true;
                 }
             }
@@ -167,11 +149,11 @@ public class User implements FileIO {
                     return "This Email is used before";
                 }
             }
-             FileWriter myWriter = new FileWriter("Users.txt");
-            myWriter.write("[\n");
+             FileWriter Writer = new FileWriter("Users.txt");
+            Writer.write("[\n");
             for(int i=0;i<array.length();i++){
-              myWriter.write(array.getJSONObject(i).toString());
-              myWriter.write(",\n");
+              Writer.write(array.getJSONObject(i).toString());
+              Writer.write(",\n");
       
             }
 
@@ -180,17 +162,19 @@ public class User implements FileIO {
             JSONObject obj = new JSONObject();
             JSONArray CreditCardArray = creditCard.MakeJSONarray();
             JSONArray Cart = new JSONArray();
-
+            JSONArray Orders = new JSONArray();
+            
             obj.put("Name", Name);
             obj.put("Password", password);
             obj.put("Email", Email);
             obj.put("PhoneNumber", PhoneNumber);
             obj.put("CreditCard", CreditCardArray);
             obj.put("Cart", Cart);
+            obj.put("Orders", Orders);
 
-            myWriter.write(obj.toString());
-            myWriter.write("]");
-            myWriter.close();
+            Writer.write(obj.toString());
+            Writer.write("]");
+            Writer.close();
     
         }catch (IOException e) {
     
