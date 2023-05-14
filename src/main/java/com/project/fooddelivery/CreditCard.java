@@ -1,6 +1,6 @@
 
 package com.project.fooddelivery;
-import org.json.JSONArray;
+import org.bson.Document;
 
 public class CreditCard {
     private String Cardnum;
@@ -44,27 +44,26 @@ public class CreditCard {
         this.CVV = CVV;
     }
 
-    public CreditCard makeCreditCardFromArray(JSONArray arr){
+    public CreditCard makeCreditCardFromObject(Document doc){
         
-        setCardnum(arr.getString(0));
-        setCVV(arr.getString(1));
-        setExpMonth(arr.getString(2));
-        setExpYear(arr.getString(3));
+        setCardnum(doc.getString("Cardnum"));
+        setCVV(doc.getString("CVV"));
+        setExpMonth(doc.getString("ExpMonth"));
+        setExpYear(doc.getString("ExpYear"));
         return this;
 
     }
 
     
-    public JSONArray MakeJSONarray(){
-        JSONArray CreditCardArray = new JSONArray();
-        CreditCardArray.put(getCardnum());
-        CreditCardArray.put(getCVV());
-        CreditCardArray.put(getExpMonth());
-        CreditCardArray.put(getExpYear());
-        return CreditCardArray;
+    public Document MakeDocument(){
+        
+        Document CreditCardDoc = new Document("Cardnum", getCardnum())
+                .append("CVV", getCVV())
+                .append("ExpMonth", getExpMonth())
+                .append("ExpYear",getExpYear());
+        
+        return CreditCardDoc;
     }
-
-
 
     
 }

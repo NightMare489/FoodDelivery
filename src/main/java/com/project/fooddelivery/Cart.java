@@ -1,6 +1,11 @@
 
 package com.project.fooddelivery;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
+import java.util.List;
+import org.bson.Document;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -49,21 +54,33 @@ public class Cart {
      
  }
 //******** Write all users data to file ***********//
+ 
+    private void UpdateCart(){
+        
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+        Document filter = new Document("Name", FoodDelivery.user.getName());
+        Document update = new Document("$set", new Document("Cart", MakeCartarray()));
+        collection.updateOne(filter, update);
+    }
+ 
+ 
     public void AddAndSavetoCart(Dish d){  
-        cart.add(d); 
-        FoodDelivery.user.UpdateUser();      
+        cart.add(d);
+        UpdateCart();
+
+            
     }
     
       public void ClearCart(){  
         cart.clear();
-        FoodDelivery.user.UpdateUser();      
+        UpdateCart();     
     }
     
     
     
     public void RemoveFromCartAndSave(Dish d){
         cart.remove(d);
-        FoodDelivery.user.UpdateUser();   
+        UpdateCart();
     }
 
     public ArrayList<Dish> getCartArray() {
@@ -71,32 +88,27 @@ public class Cart {
     }
     
     //******** To convert JSON Objects to cart data ***********//
-    public void makeCartFromArray(JSONArray arr){
+    public void makeCartFromArray(List<Document> arr){
         
-        for(int i=0;i<arr.length();i++){
-            
-            String s = "[" + arr.get(i).toString() + "]"; 
-            JSONArray array = new JSONArray(s);
-            JSONObject object = array.getJSONObject(0);         
-            Dish d = new Dish(object.getString("Name"),object.getString("desc"),object.getString("Price"));
+        for(Document doc : arr){       
+            Dish d = new Dish(doc.getString("Name"),doc.getString("desc"),doc.getString("Price"));
             cart.add(d); 
         }
         
-       
-
+      
     }
     
     
     //******** To convert cart data to JSON Objects ***********//
-public JSONArray MakeJSONarray(){
-        JSONArray CartArray = new JSONArray();
+public ArrayList<Document> MakeCartarray(){
+        ArrayList<Document> CartArray = new ArrayList<Document>();
        
         for(int i=0;i<cart.size();i++){
-          JSONObject obj = new JSONObject();
-          obj.put("Name", cart.get(i).getName());
-          obj.put("desc", cart.get(i).getDesc());
-          obj.put("Price", cart.get(i).getPrice());
-          CartArray.put(obj);
+          Document doc = new Document();
+          doc.append("Name", cart.get(i).getName());
+          doc.append("desc", cart.get(i).getDesc());
+          doc.append("Price", cart.get(i).getPrice());
+          CartArray.add(doc);
           
         }
        

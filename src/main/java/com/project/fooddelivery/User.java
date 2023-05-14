@@ -1,9 +1,16 @@
 
 package com.project.fooddelivery;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.json.JSONArray;
 import org.json.JSONObject; 
 
@@ -64,46 +71,14 @@ public class User {
 
 
     public void UpdateUser(){
-        //******** ubdate data of user  ***********//
+        //******** update data of user  ***********//
         try {
-            String content = Files.readString(Paths.get("Users.txt"));
-            FileWriter Writer = new FileWriter("Users.txt");
-            Writer.write("[\n");
-            JSONArray array = new JSONArray(content);  
-            for(int i=0; i < array.length(); i++)   
-            {  
-                // Get all data from file and parse to json
-            JSONObject object = array.getJSONObject(i);
-                if(object.getString("Name").equals(this.Name)){
-                    //Update Current user.
-                    JSONObject obj = new JSONObject();
-                    JSONArray CreditCardArray = creditCard.MakeJSONarray();
-                    JSONArray CartArray = cart.MakeJSONarray();
-                    JSONArray OrdersArray = orders.MakeJSONarray();
-                    obj.put("Name", Name);
-                    obj.put("Password", password);
-                    obj.put("Email", Email);
-                    obj.put("PhoneNumber", PhoneNumber);
-                    obj.put("CreditCard", CreditCardArray);
-                    obj.put("Cart", CartArray);
-                    obj.put("Orders",OrdersArray);
-                    
-                    
-                    Writer.write(obj.toString());
-                    Writer.write(",\n");
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+        Document filter = new Document("Name", getName());
+        Document update = new Document("$set", new Document("Password",getPassword()));
+        collection.updateOne(filter, update);
 
-                }else{   
-                    //write other users
-                        Writer.write(array.getJSONObject(i).toString());
-                        Writer.write(",\n");
-                }
-                
-            }
-             
-            Writer.write("]");
-            Writer.close();
-
-        }catch (IOException e) {
+        }catch (Exception e) {
     
         }
 
@@ -113,26 +88,36 @@ public class User {
     public boolean ValidateUser(){
         try{
             //******** chaeck when login to validate user ***********//
-            String content = Files.readString(Paths.get("Users.txt"));
-    
-            JSONArray array = new JSONArray(content);  
-            for(int i=0; i < array.length(); i++)   
-            {  
-            JSONObject object = array.getJSONObject(i);
-
             
-                if(object.getString("Name").equals(this.Name) && object.getString("Password").equals(this.password) ){           
-                    creditCard = new CreditCard().makeCreditCardFromArray(object.getJSONArray("CreditCard"));
-                    Email = object.getString("Email");
-                    PhoneNumber = object.getString("PhoneNumber");
-                    cart.makeCartFromArray(object.getJSONArray("Cart"));
-                    orders.makeOrdersFromArray(object.getJSONArray("Orders"));
-                    
-                    return true;
+            
+            Bson filter = Filters.and(
+                Filters.eq("Name", this.Name),
+                Filters.eq("Password", this.password)
+            );
+            
+            MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+            FindIterable<Document> documents = collection.find(filter);
+            
+            if(documents.iterator().hasNext()){
+                Email = documents.first().getString("Email");
+                PhoneNumber = documents.first().getString("PhoneNumber");
+                creditCard = new CreditCard().makeCreditCardFromObject(documents.first().get("CreditCard", Document.class));
+                List<Document> Cart = (List<Document>) documents.first().get("Cart");     
+                cart.makeCartFromArray(Cart);
+                
+                List<List<Document>> Orders = (List<List<Document>>) documents.first().get("Orders",new ArrayList<Document>().getClass());
+                
+                for(List<Document> order : Orders){
+                    orders.makeOrdersFromArray2(order);
                 }
+           
+               
+                return true;
             }
+            
             return false;
-        }catch (IOException e) {
+        }catch (Exception e) {
+            System.out.println(e);
             return false;
         }
 
@@ -140,52 +125,41 @@ public class User {
 
     public String RegisterUser(){
         try {
-            //******** when create new account ***********//
-            String content = Files.readString(Paths.get("Users.txt"));
-    
-            JSONArray array = new JSONArray(content);  
-            for(int i=0; i < array.length(); i++)   
-            {  
-            JSONObject object = array.getJSONObject(i);
-                if(object.getString("Name").equals(this.Name)){
-                    return "User name already exists";
-                }
-                if(object.getString("Email").equals(this.Email)){
-                    return "This Email is used before";
-                }
-            }
-             FileWriter Writer = new FileWriter("Users.txt");
-            Writer.write("[\n");
-            for(int i=0;i<array.length();i++){
-              Writer.write(array.getJSONObject(i).toString());
-              Writer.write(",\n");
-      
-            }
+            Document query = new Document("Name", this.Name);
+            MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+            FindIterable<Document> documents = collection.find(query);
+            
+            
+            if(documents.iterator().hasNext())
+                return "User name already exists";
+            query = new Document("Email", this.Email);
+            documents = collection.find(query);
+            if(documents.iterator().hasNext())
+                return "This Email is used before";
 
+            
 
-
-            JSONObject obj = new JSONObject();
-            JSONArray CreditCardArray = creditCard.MakeJSONarray();
+            Document CreditCardObj = creditCard.MakeDocument();
             JSONArray Cart = new JSONArray();
             JSONArray Orders = new JSONArray();
+
+            Document doc = new Document("Name", this.Name)
+                  .append("Password", password)
+                  .append("Email", Email)
+                  .append("PhoneNumber", PhoneNumber)
+                  .append("CreditCard",CreditCardObj)
+                  .append("Cart",new ArrayList<Document>())
+                  .append("Orders",new ArrayList<Document>());
+
+                    // Get a reference to the "users" collection
+                // Insert the document into the collection
+                collection.insertOne(doc);
             
-            obj.put("Name", Name);
-            obj.put("Password", password);
-            obj.put("Email", Email);
-            obj.put("PhoneNumber", PhoneNumber);
-            obj.put("CreditCard", CreditCardArray);
-            obj.put("Cart", Cart);
-            obj.put("Orders", Orders);
-
-            Writer.write(obj.toString());
-            Writer.write("]");
-            Writer.close();
+           
     
-        }catch (IOException e) {
-    
+        }catch (Exception e) {
+               return "Unexpected Error Occured";
         }
-
-
         return "Account registered successfully";
     }
 

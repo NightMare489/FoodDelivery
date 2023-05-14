@@ -159,7 +159,7 @@ public class Login extends javax.swing.JFrame {
     
     
     private void BloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloginActionPerformed
-LOGIN();
+        LOGIN();
     }//GEN-LAST:event_BloginActionPerformed
 
     private void BnewaccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnewaccActionPerformed
