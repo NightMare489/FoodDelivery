@@ -17,7 +17,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import org.bson.Document;
+import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -82,23 +87,30 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
 try{
-        String content = Files.readString(Paths.get("Restaurant.txt"));
-        JSONArray array = new JSONArray(content);  
-        for(int i=0; i < array.length(); i++)   
-        {  
-        JSONObject object = array.getJSONObject(i);
-        Restaurant Res = new Restaurant(object.getString("Name"), object.getString("Rate"), object.getString("Desc"), object.getString("Time"));
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Resturants");
+        FindIterable<Document> documents = collection.find();
+        for(Document doc : documents){
+            
+        Restaurant Res = new Restaurant(doc.getString("Name"), doc.getString("Rate"), doc.getString("Desc"), doc.getString("Time"));
         JPanel sp1 = new RestaurantPanel(this,Res);
         p2.add(sp1);
+            
         }
+        
+        
+        
 
-        for(int i=0;i<7-array.length();i++){
+        
+        //-------------------------
+        int length = documents.into(new ArrayList<>()).size();
+        
+        for(int i=0;i<7-length;i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
 
-    }catch (IOException e) {
-            
+    }catch (Exception e) {
+            System.out.println(e);
     }
 
 

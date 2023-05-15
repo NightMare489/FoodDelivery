@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -19,6 +20,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import java.util.ArrayList;
+import java.util.List;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -91,36 +99,29 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
         contentPane.add(scrollPane, BorderLayout.CENTER);
         //******** take dishes content from resturent file objects ***********//
             try{
-            String content = Files.readString(Paths.get("Restaurant.txt"));
-    
-            JSONArray array = new JSONArray(content); 
-            int numDishes=0;
-            for(int i=0; i < array.length(); i++)   
-            {  
-            JSONObject object = array.getJSONObject(i);
+                
+               Bson filter = Filters.and(
+                Filters.eq("Name", ResName)
+            );
             
-                if(object.getString("Name").equals(ResName)){ 
-                  JSONArray arr=  object.getJSONArray("Dishes");
-                  numDishes = arr.length();
-                    for(int j=0;j<arr.length();j++){
-                        String ob = "[";
-                        ob +=arr.get(j).toString();
-                        ob += "]";
-                        JSONObject JSobj = new JSONArray(ob).getJSONObject(0);
-                        Dish dish = new Dish(JSobj.getString("Name"),JSobj.getString("desc"),JSobj.getString("Price"));
-                           JPanel sp1 = new DishesPanel(this,dish,state);
-                                       p2.add(sp1);
-                    }
-                    
-                }
-            }
+            MongoCollection<Document> collection = MongoDB.Database.getCollection("Resturants");
+            FindIterable<Document> documents = collection.find(filter);
+//            List<List<Document>> Dishes = (List<List<Document>>) documents.first().get("Dishes",new ArrayList<Document>().getClass());
+                List<Document> Dishes = (List<Document>) documents.first().get("Dishes");
 
-            for(int i=0;i<7-numDishes;i++){
+            for(Document dishs:Dishes){
+               Dish dish = new Dish(dishs.getString("Name"),dishs.getString("desc"),dishs.getString("Price"));
+               JPanel sp1 = new DishesPanel(this,dish,state);
+               p2.add(sp1);
+            }
+            
+
+            for(int i=0;i<7-Dishes.size();i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
            
-        }catch (IOException e) {
+        }catch (Exception e) {
             
         }
             
