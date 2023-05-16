@@ -16,12 +16,20 @@ import org.json.JSONObject;
 
 
 public class User {
-    private String Name,password,Email,PhoneNumber;
+    private String Name,password,Email,Address,PhoneNumber;
     private CreditCard creditCard;
     private Cart cart = new Cart();
     private Orders orders = new Orders();
     public Cart getCart() {
         return cart;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
     }
     
     
@@ -52,12 +60,13 @@ public class User {
         return creditCard;
     }
 
-    public User(String Name, String password, String Email,String PhoneNumber,CreditCard creditCard) {
+    public User(String Name, String password, String Email,String Address,String PhoneNumber,CreditCard creditCard) {
         this.Name = Name;
         this.password = password;
         this.creditCard = creditCard;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
+        this.Address = Address;
     }
 
     public User(String Name, String password) {
@@ -102,6 +111,7 @@ public class User {
             if(documents.iterator().hasNext()){
                 Email = documents.first().getString("Email");
                 PhoneNumber = documents.first().getString("PhoneNumber");
+                Address = documents.first().getString("Address");
                 creditCard = new CreditCard().makeCreditCardFromObject(documents.first().get("CreditCard", Document.class));
                 List<Document> Cart = (List<Document>) documents.first().get("Cart");     
                 cart.makeCartFromArray(Cart);
@@ -147,6 +157,7 @@ public class User {
                   .append("Password", password)
                   .append("Email", Email)
                   .append("PhoneNumber", PhoneNumber)
+                  .append("Address", Address)
                   .append("CreditCard",CreditCardObj)
                   .append("Cart",new ArrayList<Document>())
                   .append("Orders",new ArrayList<Document>());

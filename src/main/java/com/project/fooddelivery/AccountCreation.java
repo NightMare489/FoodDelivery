@@ -6,7 +6,7 @@ import java.time.Year;
 import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
-public class AccountCreation extends javax.swing.JFrame {
+public class AccountCreation extends javax.swing.JFrame implements FrameClosedCallback {
 
     public AccountCreation() {
         initComponents(); // Show GUI
@@ -46,6 +46,9 @@ public class AccountCreation extends javax.swing.JFrame {
         TFpassword = new javax.swing.JPasswordField();
         TFphonenumber = new javax.swing.JFormattedTextField();
         LPhonenumber = new javax.swing.JLabel();
+        LAddress = new javax.swing.JLabel();
+        TFAddress = new javax.swing.JTextField();
+        AddressSelection = new javax.swing.JButton();
         BCreate = new javax.swing.JButton();
         BbackLogin = new javax.swing.JButton();
 
@@ -164,6 +167,17 @@ public class AccountCreation extends javax.swing.JFrame {
 
         LPhonenumber.setText("Phone Number:");
 
+        LAddress.setText("Addess:");
+
+        TFAddress.setEditable(false);
+
+        AddressSelection.setText("Choose");
+        AddressSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddressSelectionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -174,15 +188,19 @@ public class AccountCreation extends javax.swing.JFrame {
                     .addComponent(LUsername)
                     .addComponent(LEmail)
                     .addComponent(LPassword)
-                    .addComponent(LPhonenumber))
+                    .addComponent(LPhonenumber)
+                    .addComponent(LAddress))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TFusername, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(TFphonenumber)
                         .addComponent(TFEmail)
-                        .addComponent(TFpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addComponent(TFpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFAddress))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AddressSelection)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,10 +216,16 @@ public class AccountCreation extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LEmail)
                     .addComponent(TFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LPhonenumber)
+                    .addComponent(TFphonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TFphonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LPhonenumber)))
+                    .addComponent(TFAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LAddress)
+                    .addComponent(AddressSelection))
+                .addContainerGap())
         );
 
         BCreate.setText("Create");
@@ -222,21 +246,20 @@ public class AccountCreation extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(BbackLogin)
                 .addGap(70, 70, 70)
                 .addComponent(BCreate)
                 .addGap(145, 145, 145))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 42, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +268,11 @@ public class AccountCreation extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BCreate)
                     .addComponent(BbackLogin))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -264,6 +287,14 @@ public class AccountCreation extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_BbackLoginActionPerformed
+
+    private void AddressSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressSelectionActionPerformed
+        
+        MapForm JframeMap = new MapForm(this);
+        JframeMap.setVisible(true);
+        JframeMap.setLocation(this.getLocationOnScreen());
+        
+    }//GEN-LAST:event_AddressSelectionActionPerformed
 
 //********To remove - between phone number and credit card number ***********//
     private String ParseMask(String s){
@@ -281,6 +312,8 @@ public class AccountCreation extends javax.swing.JFrame {
         String username = TFusername.getText();
         String Email = TFEmail.getText();
         String password = TFpassword.getText();
+        String Address = TFAddress.getText();
+
         String PhoneNumber = ParseMask(TFphonenumber.getText());
         String cardnumber = ParseMask(TFCardnumber.getText());
         String CCV = TFCCV.getText();
@@ -297,6 +330,8 @@ public class AccountCreation extends javax.swing.JFrame {
             errMsg = "Email can't be empty";
         }else if(PhoneNumber.isEmpty()){
             errMsg = "Phone number can't be empty";
+        }else if (Address.isEmpty()){
+            errMsg = "Address can't be empty";
         }  
         else if(cardnumber.isEmpty()){
             errMsg = "Card number can't be empty";
@@ -315,7 +350,7 @@ public class AccountCreation extends javax.swing.JFrame {
         }
         //********create new credit card from entered data ***********//
         CreditCard creditCard = new CreditCard(cardnumber, CCV, expMonth, expYear);
-        User user = new User(username,password,Email,PhoneNumber,creditCard);
+        User user = new User(username,password,Email,Address,PhoneNumber,creditCard);
         String RegStatus = user.RegisterUser(); // Check if register was successful and isn't in the database
         if(RegStatus.equals("Account registered successfully")){
             JOptionPane.showMessageDialog(this, RegStatus,
@@ -336,8 +371,10 @@ public class AccountCreation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddressSelection;
     private javax.swing.JButton BCreate;
     private javax.swing.JButton BbackLogin;
+    private javax.swing.JLabel LAddress;
     private javax.swing.JLabel LCCV;
     private javax.swing.JLabel LCardNumber;
     private javax.swing.JLabel LEmail;
@@ -346,6 +383,7 @@ public class AccountCreation extends javax.swing.JFrame {
     private javax.swing.JLabel LUsername;
     private javax.swing.JLabel LexpMonth;
     private javax.swing.JLabel LexpYear;
+    private javax.swing.JTextField TFAddress;
     private javax.swing.JFormattedTextField TFCCV;
     private javax.swing.JFormattedTextField TFCardnumber;
     private javax.swing.JTextField TFEmail;
@@ -358,4 +396,11 @@ public class AccountCreation extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onFrameClosed(String data) {
+        TFAddress.setText(data);
+        
+        
+    }
 }

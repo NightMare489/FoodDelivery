@@ -29,7 +29,26 @@ import org.json.JSONObject;
 public class RestaurantForm extends javax.swing.JFrame  implements ActionListener{
 
        private JMenuItem Order_History, My_Cart, Log_Out,My_Profile;  
-
+void test(){
+            String json = "{...}"; // Replace with the actual JSON string
+        
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray resultsArray = jsonObject.getJSONArray("results");
+        
+        if (resultsArray.length() > 0) {
+            JSONObject locationObject = resultsArray.getJSONObject(0).getJSONArray("locations").getJSONObject(0);
+            
+            String street = locationObject.getString("street");
+            String adminArea6 = locationObject.getString("adminArea6");
+            String adminArea5 = locationObject.getString("adminArea5");
+            String adminArea4 = locationObject.getString("adminArea4");
+            
+            System.out.println("Street: " + street);
+            System.out.println("Admin Area 6: " + adminArea6);
+            System.out.println("Admin Area 5: " + adminArea5);
+            System.out.println("Admin Area 4: " + adminArea4);
+        }
+}
     public RestaurantForm() {
         initComponents();
         
