@@ -26,6 +26,7 @@ com\project\fooddelivery\Dish.class
 com\project\fooddelivery\OrdersPanel.class
 com\project\fooddelivery\Login$3.class
 com\project\fooddelivery\User.class
+com\project\fooddelivery\OrdersPanel$2.class
 com\project\fooddelivery\AccountFrame$1.class
 com\project\fooddelivery\CheckOutPanel.class
 com\project\fooddelivery\CheckOutPanel$1.class

@@ -83,6 +83,7 @@ public class User {
         }
 
     }
+    
         
 
     public boolean ValidateUser(){
@@ -105,13 +106,12 @@ public class User {
                 List<Document> Cart = (List<Document>) documents.first().get("Cart");     
                 cart.makeCartFromArray(Cart);
                 
-                List<List<Document>> Orders = (List<List<Document>>) documents.first().get("Orders",new ArrayList<Document>().getClass());
+                List<Document> Orders = (List<Document>) documents.first().get("Orders");
                 
-                for(List<Document> order : Orders){
-                    orders.makeOrdersFromArray2(order);
+                for(Document order:Orders){
+                orders.makeOrdersFromArray2(order);
                 }
-           
-               
+     
                 return true;
             }
             
@@ -140,8 +140,8 @@ public class User {
             
 
             Document CreditCardObj = creditCard.MakeDocument();
-            JSONArray Cart = new JSONArray();
-            JSONArray Orders = new JSONArray();
+
+            
 
             Document doc = new Document("Name", this.Name)
                   .append("Password", password)

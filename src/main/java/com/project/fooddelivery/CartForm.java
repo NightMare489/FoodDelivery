@@ -103,8 +103,9 @@ private int state=0;
         }
            //******** make chackout pannel if cartpannel is not empty ***********//
             if(!dishes.isEmpty()){
-            JPanel sp2 = new CheckOutPanel(this,c,state);
-            p2.add(sp2);
+            JPanel sp3 = new CheckOutPanel(this,c,state);
+
+            p2.add(sp3);
             }
         
         this.add(contentPane);

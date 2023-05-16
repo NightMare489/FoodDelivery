@@ -92,8 +92,9 @@ try{
         for(Document doc : documents){
             
         Restaurant Res = new Restaurant(doc.getString("Name"), doc.getString("Rate"), doc.getString("Desc"), doc.getString("Time"));
-        JPanel sp1 = new RestaurantPanel(this,Res);
-        p2.add(sp1);
+        JPanel sp2 = new RestaurantPanel(this,Res);
+
+        p2.add(sp2);
             
         }
         

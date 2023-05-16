@@ -22,6 +22,7 @@ public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
 
     public OrdersForm() {
         initComponents();
+        FoodDelivery.user.getOrders().UpdateOrders();
         
          JMenu menu, submenu,username;  
  
@@ -83,7 +84,6 @@ public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         ArrayList<Cart> od = FoodDelivery.user.getOrders().getOrders();
-        
         
         for(int i=0; i < od.size(); i++)   
         {  

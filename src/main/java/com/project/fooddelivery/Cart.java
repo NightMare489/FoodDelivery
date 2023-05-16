@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 public class Cart {
   private  ArrayList<Dish> cart = new ArrayList();
+  private int Status=0;
+
   
   public Cart(){
       
@@ -26,7 +28,15 @@ public class Cart {
         cart.add(d);     
     }
       
+    public int getStatus() {
+        return Status;
+    }
+
+    public void setStatus(int Status) {
+        this.Status = Status;
+    }
       
+    
   public String getSubTotal(){
       double DSubTotal=0;
       String SSubTotal="";

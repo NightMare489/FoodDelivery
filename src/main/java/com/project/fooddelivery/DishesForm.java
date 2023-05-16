@@ -112,7 +112,9 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
             for(Document dishs:Dishes){
                Dish dish = new Dish(dishs.getString("Name"),dishs.getString("desc"),dishs.getString("Price"));
                JPanel sp1 = new DishesPanel(this,dish,state);
-               p2.add(sp1);
+               JPanel sp2 = new DishesPanel(this,dish,state);
+
+               p2.add(sp2);
             }
             
 
