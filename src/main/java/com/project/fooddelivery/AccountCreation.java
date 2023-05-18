@@ -51,6 +51,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
         AddressSelection = new javax.swing.JButton();
         BCreate = new javax.swing.JButton();
         BbackLogin = new javax.swing.JButton();
+        PermissionChkbx = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -242,16 +243,12 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
             }
         });
 
+        PermissionChkbx.setText("Apply For a Job");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BbackLogin)
-                .addGap(70, 70, 70)
-                .addComponent(BCreate)
-                .addGap(145, 145, 145))
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,6 +257,17 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(BbackLogin)
+                        .addGap(70, 70, 70)
+                        .addComponent(BCreate)
+                        .addGap(144, 144, 144))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PermissionChkbx)
+                        .addGap(222, 222, 222))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,11 +276,13 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PermissionChkbx)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BCreate)
                     .addComponent(BbackLogin))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -319,6 +329,8 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
         String CCV = TFCCV.getText();
         String expMonth = TFexpMonth.getText();
         String expYear = TFexpYear.getText();
+        
+        int permission = PermissionChkbx.isSelected()? 1 : 2;
 
 
 
@@ -350,7 +362,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
         }
         //********create new credit card from entered data ***********//
         CreditCard creditCard = new CreditCard(cardnumber, CCV, expMonth, expYear);
-        User user = new User(username,password,Email,Address,PhoneNumber,creditCard);
+        User user = new User(username,password,Email,Address,PhoneNumber,creditCard,permission);
         String RegStatus = user.RegisterUser(); // Check if register was successful and isn't in the database
         if(RegStatus.equals("Account registered successfully")){
             JOptionPane.showMessageDialog(this, RegStatus,
@@ -383,6 +395,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
     private javax.swing.JLabel LUsername;
     private javax.swing.JLabel LexpMonth;
     private javax.swing.JLabel LexpYear;
+    private javax.swing.JCheckBox PermissionChkbx;
     private javax.swing.JTextField TFAddress;
     private javax.swing.JFormattedTextField TFCCV;
     private javax.swing.JFormattedTextField TFCardnumber;

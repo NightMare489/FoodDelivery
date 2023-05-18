@@ -116,15 +116,22 @@ try{
         p2.add(sp2);
             
         }
-        
-        
-        
+        int st;
+        if(FoodDelivery.user.getPermission() ==0){
+        JPanel sp3 = new AddPanel();
+        p2.add(sp3);
+        st = 6;
+        }else{
+            st = 7;
+        }
 
+        
+        
         
         //-------------------------
         int length = documents.into(new ArrayList<>()).size();
         
-        for(int i=0;i<7-length;i++){
+        for(int i=0;i<st-length;i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }

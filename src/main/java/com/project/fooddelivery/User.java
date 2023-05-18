@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 public class User {
     private String Name,password,Email,Address,PhoneNumber;
+    private int Permission;
     private CreditCard creditCard;
     private Cart cart = new Cart();
     private Orders orders = new Orders();
@@ -60,13 +61,14 @@ public class User {
         return creditCard;
     }
 
-    public User(String Name, String password, String Email,String Address,String PhoneNumber,CreditCard creditCard) {
+    public User(String Name, String password, String Email,String Address,String PhoneNumber,CreditCard creditCard, int Permission) {
         this.Name = Name;
         this.password = password;
         this.creditCard = creditCard;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.Address = Address;
+        this.Permission = Permission;
     }
 
     public User(String Name, String password) {
@@ -77,6 +79,15 @@ public class User {
     public Orders getOrders() {
         return orders;
     }
+
+    public int getPermission() {
+        return Permission;
+    }
+
+    public void setPermission(int Permission) {
+        this.Permission = Permission;
+    }
+    
 
 
     public void UpdateUser(){
@@ -112,6 +123,7 @@ public class User {
                 Email = documents.first().getString("Email");
                 PhoneNumber = documents.first().getString("PhoneNumber");
                 Address = documents.first().getString("Address");
+                Permission = documents.first().getInteger("Permission");
                 creditCard = new CreditCard().makeCreditCardFromObject(documents.first().get("CreditCard", Document.class));
                 List<Document> Cart = (List<Document>) documents.first().get("Cart");     
                 cart.makeCartFromArray(Cart);
@@ -158,6 +170,7 @@ public class User {
                   .append("Email", Email)
                   .append("PhoneNumber", PhoneNumber)
                   .append("Address", Address)
+                  .append("Permission", Permission)
                   .append("CreditCard",CreditCardObj)
                   .append("Cart",new ArrayList<Document>())
                   .append("Orders",new ArrayList<Document>());
