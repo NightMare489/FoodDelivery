@@ -125,6 +125,11 @@ public class OrdersPanel extends javax.swing.JPanel {
         });
 
         Confirm.setText("Confirm Order");
+        Confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfirmMouseClicked(evt);
+            }
+        });
         Confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmActionPerformed(evt);
@@ -180,11 +185,11 @@ public class OrdersPanel extends javax.swing.JPanel {
             //@todo complaint
             
             
-        ActionButton.setText("Submit a Complaint");
+//        ActionButton.setText("Submit a Complaint");
         }else{
-        FoodDelivery.user.getOrders().DeleteAndSaveOrder(c);
             
-            
+            Orders.ChangeOrderStatus(-1, c);
+                   
         OrdersForm of = new OrdersForm();
             of.setVisible(true);
             of.setLocation(frame.getLocationOnScreen());
@@ -196,8 +201,19 @@ public class OrdersPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ActionButtonActionPerformed
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ConfirmActionPerformed
+
+    private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseClicked
+        Orders.ChangeOrderStatus(1,c);
+                OrdersForm of = new OrdersForm();
+            of.setVisible(true);
+            of.setLocation(frame.getLocationOnScreen());
+            frame.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_ConfirmMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -58,6 +58,28 @@ public class Orders {
     }
     
     
+    public static void ChangeOrderStatus(int newStatus,Cart c){
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+//        Document filter = new Document("Name", c.getUser());
+        ArrayList<Document> arr = c.MakeCartarray();
+        Document doc1 = new Document("Status", c.getStatus()).append("Name", c.getUser())
+        .append("Arr", c.MakeCartarray());
+        c.setStatus(newStatus);
+        Document doc2 = new Document("Status", c.getStatus()).append("Name", c.getUser())
+        .append("Arr", c.MakeCartarray());
+        
+        // Create the filter to match the document with the given UserName and old value
+        Document filter = new Document("Name", c.getUser())
+                .append("Orders", doc1);
+
+        // Create the update query to set the new value using the positional operator $
+        Document updateQuery = new Document("$set", new Document()
+                .append("Orders.$", doc2));
+        
+        collection.updateOne(filter, updateQuery);
+    
+    }
+    
     
     public void AddAndSavetoOrders(Cart jsn){ 
         Orders.add(new Cart(jsn)); 
