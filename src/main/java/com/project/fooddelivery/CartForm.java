@@ -36,16 +36,22 @@ private int state=0;
           Logout=new JMenuItem("Logout"); 
           My_Profile = new JMenuItem("My Profile");
           
-          My_Cart.addActionListener(this); 
-          Order_History.addActionListener(this);  
           Logout.addActionListener(this);   
           My_Profile.addActionListener(this);
           
 
           
           menu.add(My_Profile);
+         if(FoodDelivery.user.getPermission() == 2){
+          Order_History.addActionListener(this);  
+          My_Cart.addActionListener(this);
           menu.add(Order_History);
           menu.add(My_Cart);
+          }
+          if(FoodDelivery.user.getPermission() == 0){
+              Order_History.addActionListener(this); 
+              menu.add(Order_History);
+          }
           menu.add(Logout);  
           
           back =  new JMenuItem("←");
@@ -138,10 +144,19 @@ private int state=0;
         }
 
         if(e.getSource()==back) {
+            if(FoodDelivery.user.getPermission() ==1){
+                OrdersForm jframeOrdersForm = new OrdersForm();
+                jframeOrdersForm.setVisible(true);
+                jframeOrdersForm.setLocation(getLocationOnScreen());
+                setVisible(false);
+                
+            }
+            else{
             RestaurantForm jframeRestaurantForm = new RestaurantForm();
             jframeRestaurantForm.setVisible(true);
             jframeRestaurantForm.setLocation(getLocationOnScreen());
             setVisible(false);
+            }
         }
         
         if(e.getSource() == My_Profile){

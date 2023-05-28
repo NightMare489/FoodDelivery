@@ -47,10 +47,30 @@ public class OrdersPanel extends javax.swing.JPanel {
         Icon.setIcon(new javax.swing.ImageIcon("icons\\cancellation.png")); 
         ActionButton.setText("Submit a Complaint");
         }
+        
+        if(FoodDelivery.user.getPermission()==0){
+            ActionButton.hide();
+        }
+        if(FoodDelivery.user.getPermission()!=1){
+            Confirm.hide();
+        }
+        
+        if(c.getStatus() == 1 && FoodDelivery.user.getPermission() !=2){
+            ActionButton.hide();
+            Confirm.hide();
+        }
+        if(c.getStatus() == -1 && FoodDelivery.user.getPermission() !=2){
+            ActionButton.hide();
+            Confirm.hide();
+        }
 
         Order_Num.setFont(new java.awt.Font("Segoe UI", 0, 24)); 
+        if(FoodDelivery.user.getPermission() == 2){
         Order_Num.setText("Order #"+Number);
-
+        }else{
+        Order_Num.setText(c.getUser());
+        
+        }
         Items_Num.setText("Items: " + c.getCartArray().size());
 
         Price.setText("Total: "+ c.getTotal()+" EGP");
@@ -84,6 +104,7 @@ public class OrdersPanel extends javax.swing.JPanel {
         Items_Num = new javax.swing.JLabel();
         Price = new javax.swing.JLabel();
         ActionButton = new javax.swing.JButton();
+        Confirm = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(32767, 105));
         setMinimumSize(new java.awt.Dimension(0, 105));
@@ -103,6 +124,13 @@ public class OrdersPanel extends javax.swing.JPanel {
             }
         });
 
+        Confirm.setText("Confirm Order");
+        Confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,16 +141,19 @@ public class OrdersPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Items_Num)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
-                        .addComponent(ActionButton)
-                        .addGap(47, 47, 47))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Order_Num)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Price)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Items_Num)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                                .addComponent(ActionButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Order_Num)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Confirm)))
+                        .addGap(47, 47, 47))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +161,9 @@ public class OrdersPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Order_Num)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Order_Num)
+                            .addComponent(Confirm))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Items_Num)
@@ -162,9 +195,14 @@ public class OrdersPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_ActionButtonActionPerformed
 
+    private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConfirmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActionButton;
+    private javax.swing.JButton Confirm;
     private javax.swing.JLabel Icon;
     private javax.swing.JLabel Items_Num;
     private javax.swing.JLabel Order_Num;

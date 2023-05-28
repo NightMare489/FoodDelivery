@@ -34,9 +34,13 @@ import org.json.JSONObject;
 public class DishesForm extends javax.swing.JFrame implements ActionListener {
 private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;  
 
+    public String ResName;
+    public int state;
     public DishesForm(String ResName,int state) {
         
         initComponents();
+        this.ResName = ResName;
+        this.state = state;
         JMenu menu; 
         
           JMenuBar mb=new JMenuBar();  
@@ -46,16 +50,23 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
           Logout=new JMenuItem("Logout"); 
           My_Profile = new JMenuItem("My Profile");
           
-          Order_History.addActionListener(this);  
-          My_Cart.addActionListener(this);
+
           Logout.addActionListener(this);   
           My_Profile.addActionListener(this);
           
 
           
           menu.add(My_Profile);
+         if(FoodDelivery.user.getPermission() == 2){
+          Order_History.addActionListener(this);  
+          My_Cart.addActionListener(this);
           menu.add(Order_History);
           menu.add(My_Cart);
+          }
+          if(FoodDelivery.user.getPermission() == 0){
+              Order_History.addActionListener(this); 
+              menu.add(Order_History);
+          }
           menu.add(Logout);  
           
           back =  new JMenuItem("←");
@@ -117,8 +128,16 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
                p2.add(sp2);
             }
             
+        int st;
+            if(FoodDelivery.user.getPermission() ==0){
+            JPanel sp3 = new AddDishesPanel();
+            p2.add(sp3);
+            st = 6;
+            }else{
+                st = 7;
+            }
 
-            for(int i=0;i<7-Dishes.size();i++){
+            for(int i=0;i<st-Dishes.size();i++){
             JPanel sp1 = new RestaurantPanel(false);
             p2.add(sp1);
         }
@@ -154,10 +173,19 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
         }
 
         if(e.getSource()==back) {
+            if(FoodDelivery.user.getPermission() ==1){
+                OrdersForm jframeOrdersForm = new OrdersForm();
+                jframeOrdersForm.setVisible(true);
+                jframeOrdersForm.setLocation(getLocationOnScreen());
+                setVisible(false);
+                
+            }
+            else{
             RestaurantForm jframeRestaurantForm = new RestaurantForm();
             jframeRestaurantForm.setVisible(true);
             jframeRestaurantForm.setLocation(getLocationOnScreen());
             setVisible(false);
+            }
         }
         
                     if(e.getSource() == My_Cart){

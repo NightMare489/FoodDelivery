@@ -7,13 +7,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.json.JSONArray;
 
 public class Orders {
     private  ArrayList<Cart> Orders = new ArrayList();
-
+    
     public ArrayList<Cart> getOrders() {
         return Orders;
     }
@@ -21,15 +22,29 @@ public class Orders {
     
     public void UpdateOrders(){
         Orders.clear();
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+
+        if(FoodDelivery.user.getPermission()==2){
+        
+
                 Bson filter = Filters.and(
                 Filters.eq("Name", FoodDelivery.user.getName())
             );     
-            MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
             FindIterable<Document> documents = collection.find(filter);        
             List<Document> Orderss = (List<Document>) documents.first().get("Orders");     
             for(Document order:Orderss){
             makeOrdersFromArray2(order);
             }
+        }else{
+            FindIterable<Document> AllCarts = collection.find();
+                for(Document d : AllCarts){
+                List<Document> ct = (List<Document>) d.get("Orders");     
+
+                    for(Document order:ct){
+                    makeOrdersFromArray2(order);
+             }
+            }
+        }
     }
     
     
@@ -70,6 +85,8 @@ public class Orders {
 
                 Cart c = new Cart();
                 c.setStatus(doc.getInteger("Status"));
+                c.setUser(doc.getString("Name"));
+        
 
                 c.makeCartFromArray((List<Document>) doc.get("Arr", new ArrayList().getClass()));
                 Orders.add(c);
@@ -85,7 +102,7 @@ public class Orders {
         
        
         for(int i=0;i<Orders.size();i++){
-           Document doc = new Document("Status", Orders.get(i).getStatus())
+           Document doc = new Document("Status", Orders.get(i).getStatus()).append("Name", Orders.get(i).getUser())
                    .append("Arr", Orders.get(i).MakeCartarray());
             
           OrdersArray.add(doc);        

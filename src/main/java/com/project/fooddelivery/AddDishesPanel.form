@@ -37,9 +37,9 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="ResIcon">
+        <Component class="javax.swing.JLabel" name="DishIcon">
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ResIconMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="DishIconMouseClicked"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -47,19 +47,19 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JTextField" name="Time">
+        <Component class="javax.swing.JTextField" name="Price">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Restaurant Time"/>
+            <Property name="toolTipText" type="java.lang.String" value="Dish Price"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="70" width="90" height="-1"/>
+              <AbsoluteConstraints x="320" y="60" width="90" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="Name">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Restaurant Name"/>
+            <Property name="toolTipText" type="java.lang.String" value="Dish Name"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -69,21 +69,31 @@
         </Component>
         <Component class="javax.swing.JTextField" name="Desc">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Restaurant Description"/>
+            <Property name="toolTipText" type="java.lang.String" value="Dish Description"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="40" width="190" height="-1"/>
+              <AbsoluteConstraints x="110" y="40" width="190" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="MinLabel">
+        <Component class="javax.swing.JLabel" name="EGPLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Min"/>
+            <Property name="text" type="java.lang.String" value="EGP"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="210" y="73" width="30" height="-1"/>
+              <AbsoluteConstraints x="420" y="60" width="30" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="Check">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="CheckMouseClicked"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="450" y="60" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -93,7 +103,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="447" y="10" width="30" height="30"/>
+              <AbsoluteConstraints x="450" y="10" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>

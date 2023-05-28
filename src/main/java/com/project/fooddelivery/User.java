@@ -128,11 +128,24 @@ public class User {
                 List<Document> Cart = (List<Document>) documents.first().get("Cart");     
                 cart.makeCartFromArray(Cart);
                 
+                if(Permission ==0){
+                    FindIterable<Document> AllCarts = collection.find();
+                        for(Document d : AllCarts){
+                        List<Document> ct = (List<Document>) d.get("Orders");     
+                        
+                            for(Document order:ct){
+                            orders.makeOrdersFromArray2(order);
+                            }
+                    }
+          
+                }else{
+                
                 List<Document> Orders = (List<Document>) documents.first().get("Orders");
                 
                 for(Document order:Orders){
                 orders.makeOrdersFromArray2(order);
                 }
+              }
      
                 return true;
             }

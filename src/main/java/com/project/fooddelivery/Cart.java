@@ -12,6 +12,7 @@ import org.json.JSONObject;
 public class Cart {
   private  ArrayList<Dish> cart = new ArrayList();
   private int Status=0;
+  private String User = FoodDelivery.user == null ? "":FoodDelivery.user.getName();
 
   
   public Cart(){
@@ -23,7 +24,16 @@ public class Cart {
       this.cart = (ArrayList<Dish>)c.cart.clone();
       
   }
+
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String User) {
+        this.User = User;
+    }
   
+    
       public void AddtoCart(Dish d){  
         cart.add(d);     
     }

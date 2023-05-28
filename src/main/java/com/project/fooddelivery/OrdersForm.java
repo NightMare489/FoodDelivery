@@ -33,23 +33,35 @@ public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
           My_Cart=new JMenuItem("My Cart");  
           Logout=new JMenuItem("Logout");
           My_Profile = new JMenuItem("My Profile");
-          
+          menu.add(My_Profile); 
+
+          if(FoodDelivery.user.getPermission() == 2){
           Order_History.addActionListener(this);  
           My_Cart.addActionListener(this);
+          menu.add(Order_History);
+          menu.add(My_Cart);
+          }
+          if(FoodDelivery.user.getPermission() == 0){
+              Order_History.addActionListener(this); 
+              menu.add(Order_History);
+          }
+          
+          
           Logout.addActionListener(this);   
           My_Profile.addActionListener(this);
           
+          if(FoodDelivery.user.getPermission() != 1){
           back =  new JMenuItem("←");
           back.setMinimumSize(menu.getSize());
           back.setPreferredSize(menu.getSize());
           back.setMaximumSize(new Dimension(20, 20));
           back.addActionListener(this);
-          
-          menu.add(My_Profile); 
-          menu.add(Order_History);
-          menu.add(My_Cart);
-          menu.add(Logout);
           mb.add(back);
+
+          }
+          
+
+          menu.add(Logout);
           mb.add(menu);
           mb.add(new JLabel(" |  "));
           mb.add(new JLabel(FoodDelivery.user.getName()));
@@ -115,10 +127,16 @@ public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
         this.setVisible(false);
         }
         if(e.getSource()==back) {
+            
+            if(FoodDelivery.user.getPermission() ==1){
+                
+            }
+            else{
             RestaurantForm jframeRestaurantForm = new RestaurantForm();
             jframeRestaurantForm.setVisible(true);
             jframeRestaurantForm.setLocation(getLocationOnScreen());
             setVisible(false);
+            }
         }
         if(e.getSource() == My_Profile){
             AccountFrame Acc = new AccountFrame();

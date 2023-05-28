@@ -7,9 +7,15 @@ package com.project.fooddelivery;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.LineBorder;
@@ -19,12 +25,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author TheUltimateGamer
  */
-public class AddPanel extends javax.swing.JPanel {
+public class AddRestaurantPanel extends javax.swing.JPanel {
 
+        String IconFilePath ="";
+    
     /**
      * Creates new form AddPanel
      */
-    public AddPanel() {
+    public AddRestaurantPanel() {
         initComponents();
         initComponents2();
     }
@@ -35,9 +43,8 @@ public class AddPanel extends javax.swing.JPanel {
         this.setBorder(new LineBorder(Color.black));
         Icon.setIcon(new javax.swing.ImageIcon("icons\\plus.png")); 
         ResIcon.setIcon(new javax.swing.ImageIcon("icons\\plus.png"));
+        Check.setIcon(new javax.swing.ImageIcon("icons\\Check.png"));
         Cancel.setIcon(new javax.swing.ImageIcon("icons\\delete.png"));
-
-
 
 }
 
@@ -56,6 +63,7 @@ public class AddPanel extends javax.swing.JPanel {
         Name = new javax.swing.JTextField();
         Desc = new javax.swing.JTextField();
         MinLabel = new javax.swing.JLabel();
+        Check = new javax.swing.JLabel();
         Cancel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Icon = new javax.swing.JLabel();
@@ -90,13 +98,21 @@ public class AddPanel extends javax.swing.JPanel {
         jPanel1.add(MinLabel);
         MinLabel.setBounds(210, 73, 30, 16);
 
+        Check.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CheckMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Check);
+        Check.setBounds(450, 60, 30, 30);
+
         Cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CancelMouseClicked(evt);
             }
         });
         jPanel1.add(Cancel);
-        Cancel.setBounds(447, 10, 30, 30);
+        Cancel.setBounds(450, 10, 30, 30);
 
         add(jPanel1);
         jPanel1.setBounds(5, 2, 500, 100);
@@ -129,6 +145,7 @@ public class AddPanel extends javax.swing.JPanel {
         Desc.setText("");
         Name.setText("");
         Time.setText("");
+        IconFilePath = "";
         ResIcon.setIcon(new javax.swing.ImageIcon("icons\\plus.png"));
 
         
@@ -152,7 +169,9 @@ public class AddPanel extends javax.swing.JPanel {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             String filePath = selectedFile.getAbsolutePath();
+            IconFilePath = filePath;
             ResIcon.setIcon(new javax.swing.ImageIcon(filePath));
+            
 
         }
         UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -162,9 +181,40 @@ public class AddPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_ResIconMouseClicked
 
+    private void CheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CheckMouseClicked
+        try{
+        if(IconFilePath.equals("") || Name.getText().equals("") || Desc.getText().equals("") || Time.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Enter All data including image",
+            "Invalid Data", JOptionPane.ERROR_MESSAGE);
+         return;
+        }
+        Path sourcePath = Path.of(IconFilePath);
+        Path destinationDir = Path.of("icons\\");
+        Path destinationPath = destinationDir.resolve(Name.getText() + ".png");
+        Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING); 
+        Restaurant res = new Restaurant( Name.getText(),"0.0",Desc.getText(),Time.getText());
+        res.SaveRestaurant();
+        JOptionPane.showMessageDialog(this, "Restaurnt added successfully",
+            "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+            RestaurantForm jframeRestaurantForm = new RestaurantForm();
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            jframeRestaurantForm.setVisible(true);
+            jframeRestaurantForm.setLocation(frame.getLocationOnScreen());
+            frame.setVisible(false);
+        
+        
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        
+    }//GEN-LAST:event_CheckMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cancel;
+    private javax.swing.JLabel Check;
     private javax.swing.JTextField Desc;
     private javax.swing.JLabel Icon;
     private javax.swing.JLabel MinLabel;

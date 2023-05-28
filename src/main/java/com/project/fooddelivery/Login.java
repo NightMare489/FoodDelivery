@@ -145,10 +145,18 @@ public class Login extends javax.swing.JFrame {
         if(user.ValidateUser()){
             //******** Success Login ***********//
         FoodDelivery.user = user;
+        if(FoodDelivery.user.getPermission() == 1){
+            OrdersForm JOrdersForm = new OrdersForm();
+            JOrdersForm.setVisible(true);
+            Point Location = new Point(this.getLocationOnScreen().x,1);
+            JOrdersForm.setLocation(Location);
+        }else{
         RestaurantForm JRestaurantForm = new RestaurantForm(); // View restaurant form.
         JRestaurantForm.setVisible(true);
         Point Location = new Point(this.getLocationOnScreen().x,1);
         JRestaurantForm.setLocation(Location);
+        
+        }
         this.setVisible(false);
         }else{
             JOptionPane.showMessageDialog(this, "Incorrect username or password",

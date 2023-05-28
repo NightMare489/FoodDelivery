@@ -49,6 +49,10 @@ public class DishesPanel extends javax.swing.JPanel {
             Action_Button.hide();
         }
         
+        if(FoodDelivery.user.getPermission()!=2){
+            Action_Button.hide();
+        }
+        
         
         if(state ==0){
         Action_Button.setText("Add to Cart");

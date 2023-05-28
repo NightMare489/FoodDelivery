@@ -29,26 +29,6 @@ import org.json.JSONObject;
 public class RestaurantForm extends javax.swing.JFrame  implements ActionListener{
 
        private JMenuItem Order_History, My_Cart, Log_Out,My_Profile;  
-void test(){
-            String json = "{...}"; // Replace with the actual JSON string
-        
-        JSONObject jsonObject = new JSONObject(json);
-        JSONArray resultsArray = jsonObject.getJSONArray("results");
-        
-        if (resultsArray.length() > 0) {
-            JSONObject locationObject = resultsArray.getJSONObject(0).getJSONArray("locations").getJSONObject(0);
-            
-            String street = locationObject.getString("street");
-            String adminArea6 = locationObject.getString("adminArea6");
-            String adminArea5 = locationObject.getString("adminArea5");
-            String adminArea4 = locationObject.getString("adminArea4");
-            
-            System.out.println("Street: " + street);
-            System.out.println("Admin Area 6: " + adminArea6);
-            System.out.println("Admin Area 5: " + adminArea5);
-            System.out.println("Admin Area 4: " + adminArea4);
-        }
-}
     public RestaurantForm() {
         initComponents();
         
@@ -62,14 +42,22 @@ void test(){
           Log_Out=new JMenuItem("Logout");
           My_Profile = new JMenuItem("My Profile");
           
-          Order_History.addActionListener(this);  
-          My_Cart.addActionListener(this);
+ 
           Log_Out.addActionListener(this);   
           My_Profile.addActionListener(this);
           
           menu.add(My_Profile);
+          
+         if(FoodDelivery.user.getPermission() == 2){
+          Order_History.addActionListener(this);  
+          My_Cart.addActionListener(this);
           menu.add(Order_History);
           menu.add(My_Cart);
+          }
+          if(FoodDelivery.user.getPermission() == 0){
+              Order_History.addActionListener(this); 
+              menu.add(Order_History);
+          }
           menu.add(Log_Out);  
           mb.add(menu);
           mb.add(new JLabel(" |  "));
@@ -118,7 +106,7 @@ try{
         }
         int st;
         if(FoodDelivery.user.getPermission() ==0){
-        JPanel sp3 = new AddPanel();
+        JPanel sp3 = new AddRestaurantPanel();
         p2.add(sp3);
         st = 6;
         }else{
