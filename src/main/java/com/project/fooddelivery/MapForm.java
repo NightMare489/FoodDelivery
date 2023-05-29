@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.MouseInputListener;
@@ -42,6 +43,7 @@ private FrameClosedCallback callback;
     }
 
     private void initComponents2(){
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         TileFactoryInfo info = new OSMTileFactoryInfo();
         DefaultTileFactory tileFactory = new DefaultTileFactory(info);

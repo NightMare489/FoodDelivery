@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 public class Cart {
   private  ArrayList<Dish> cart = new ArrayList();
+  private  ArrayList<Message> Messages = new ArrayList();
+
   private int Status=0;
   private String User = FoodDelivery.user == null ? "":FoodDelivery.user.getName();
 
@@ -37,6 +39,11 @@ public class Cart {
       public void AddtoCart(Dish d){  
         cart.add(d);     
     }
+      
+      public void AddtoMessages(Message m){
+          Messages.add(m);
+          UpdateCart();
+      }
       
     public int getStatus() {
         return Status;
@@ -107,12 +114,26 @@ public class Cart {
         return cart;
     }
     
+    public ArrayList<Message> getMessageArray(){
+        return Messages;
+    } 
+    
     //******** To convert JSON Objects to cart data ***********//
     public void makeCartFromArray(List<Document> arr){
         
         for(Document doc : arr){       
             Dish d = new Dish(doc.getString("Name"),doc.getString("desc"),doc.getString("Price"));
             cart.add(d); 
+        }
+        
+      
+    }
+    
+    public void makeMessagesFromArray(List<Document> arr){
+        
+        for(Document doc : arr){
+            Message m = new Message(doc.getString("From"),doc.getString("Title"),doc.getString("Data"));
+            Messages.add(m); 
         }
         
       
@@ -136,6 +157,21 @@ public ArrayList<Document> MakeCartarray(){
     }
     
  
+public ArrayList<Document> MakeMessagesArray(){
+        ArrayList<Document> MessagesArray = new ArrayList<Document>();
+       
+        for(int i=0;i<Messages.size();i++){
+          Document doc = new Document();
+          doc.append("From", Messages.get(i).getFrom());
+          doc.append("Title", Messages.get(i).getTitle());
+          doc.append("Data", Messages.get(i).getData());
+          MessagesArray.add(doc);
+          
+        }
+       
+        return MessagesArray;
+    }
+    
     
     
 }

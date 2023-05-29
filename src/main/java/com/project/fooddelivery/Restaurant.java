@@ -19,6 +19,20 @@ public class Restaurant {
     
     
     }
+    
+        public void DeleteResturant(){
+            MongoCollection<Document> collection = MongoDB.Database.getCollection("Resturants");
+    
+                Document doc = new Document("Name", this.name)
+                  .append("Dishes", new ArrayList<Document>())
+                  .append("Rate", "0.0")
+                  .append("Desc", this.desc)
+                  .append("Time", this.time);
+                 collection.deleteOne(doc);
+  
+    }
+    
+    
 
     public String getTime() {
         return time;

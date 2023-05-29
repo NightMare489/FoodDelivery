@@ -4,6 +4,7 @@ package com.project.fooddelivery;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,7 +15,9 @@ public class AccountFrame extends javax.swing.JFrame implements ActionListener {
 private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;  
 
     public AccountFrame() {
+        
         initComponents(); // Create GUI
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         this.setTitle("My Profile");
         //********Create Menu bar ***********//
           JMenu menu;
@@ -128,6 +131,7 @@ private JMenuItem Order_History,My_Cart, Logout,My_Profile,back;
         LPhone2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
         setResizable(false);
 
         Lname1.setText("Name:");

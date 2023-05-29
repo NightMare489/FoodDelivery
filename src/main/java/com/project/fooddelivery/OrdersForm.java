@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class OrdersForm extends javax.swing.JFrame  implements ActionListener{
 
     public OrdersForm() {
         initComponents();
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         FoodDelivery.user.getOrders().UpdateOrders();
         
          JMenu menu, submenu,username;  

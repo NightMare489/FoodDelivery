@@ -23,6 +23,7 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -31,9 +32,9 @@ public class RestaurantForm extends javax.swing.JFrame  implements ActionListene
        private JMenuItem Order_History, My_Cart, Log_Out,My_Profile;  
     public RestaurantForm() {
         initComponents();
-        
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
          JMenu menu;
- 
+         
           JMenuBar mb=new JMenuBar();  
           menu=new JMenu("☰");  
           

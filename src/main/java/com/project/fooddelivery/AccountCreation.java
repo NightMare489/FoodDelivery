@@ -2,6 +2,7 @@ package com.project.fooddelivery;
 
 import java.text.NumberFormat;
 import java.time.Year;
+import javax.swing.ImageIcon;
 
 import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
@@ -11,6 +12,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
     public AccountCreation() {
         initComponents(); // Show GUI
         this.setTitle("Create Account");
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         //********To make year accept only integers between next year and 10 more years ***********//
         NumberFormat YearFormat = new  java.text.DecimalFormat("#0");
         NumberFormatter YearFormatter = new NumberFormatter(YearFormat);

@@ -195,7 +195,7 @@ public class AddDishesPanel extends javax.swing.JPanel {
         Dish dish = new Dish( Name.getText(),Desc.getText(),Price.getText());
         DishesForm frame = (DishesForm) SwingUtilities.getWindowAncestor(this);
         dish.AddDishToRestaurant(frame.ResName);
-        JOptionPane.showMessageDialog(this, "Restaurnt added successfully",
+        JOptionPane.showMessageDialog(this, "Dish added successfully",
             "Success", JOptionPane.INFORMATION_MESSAGE);
         
             DishesForm jframeDishesForm = new DishesForm(frame.ResName,frame.state);

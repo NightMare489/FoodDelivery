@@ -57,16 +57,44 @@ public class Orders {
         
     }
     
+    public static void UpdateMessages(Message m,Cart c){
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
+        ArrayList<Document> arr = c.MakeCartarray();
+        Document doc1 = new Document("Status", c.getStatus()).append("Name", c.getUser())
+        .append("Arr", c.MakeCartarray())
+        .append("Messages", c.MakeMessagesArray());
+        c.AddtoMessages(m);
+        Document doc2 = new Document("Status", c.getStatus()).append("Name", c.getUser())
+        .append("Arr", c.MakeCartarray())
+        .append("Messages", c.MakeMessagesArray());
+        
+        // Create the filter to match the document with the given UserName and old value
+        Document filter = new Document("Name", c.getUser())
+                .append("Orders", doc1);
+
+        // Create the update query to set the new value using the positional operator $
+        Document updateQuery = new Document("$set", new Document()
+                .append("Orders.$", doc2));
+        
+        collection.updateOne(filter, updateQuery);
+        
+    
+        
+    }
+    
+    
     
     public static void ChangeOrderStatus(int newStatus,Cart c){
         MongoCollection<Document> collection = MongoDB.Database.getCollection("Users");
 //        Document filter = new Document("Name", c.getUser());
         ArrayList<Document> arr = c.MakeCartarray();
         Document doc1 = new Document("Status", c.getStatus()).append("Name", c.getUser())
-        .append("Arr", c.MakeCartarray());
+        .append("Arr", c.MakeCartarray())
+        .append("Messages", c.MakeMessagesArray());
         c.setStatus(newStatus);
         Document doc2 = new Document("Status", c.getStatus()).append("Name", c.getUser())
-        .append("Arr", c.MakeCartarray());
+        .append("Arr", c.MakeCartarray())
+        .append("Messages", c.MakeMessagesArray());
         
         // Create the filter to match the document with the given UserName and old value
         Document filter = new Document("Name", c.getUser())
@@ -97,6 +125,7 @@ public class Orders {
         for(Document doc : arr){ 
                 Cart c = new Cart();
                 c.makeCartFromArray((List<Document>) doc.get("Arr", Document.class));
+                c.makeMessagesFromArray((List<Document>) doc.get("Messages", Document.class));
                 c.setStatus(doc.getInteger("Status"));
                 Orders.add(c);
                 
@@ -108,9 +137,8 @@ public class Orders {
                 Cart c = new Cart();
                 c.setStatus(doc.getInteger("Status"));
                 c.setUser(doc.getString("Name"));
-        
-
                 c.makeCartFromArray((List<Document>) doc.get("Arr", new ArrayList().getClass()));
+                c.makeMessagesFromArray((List<Document>) doc.get("Messages", new ArrayList().getClass()));
                 Orders.add(c);
                 
             
@@ -125,7 +153,8 @@ public class Orders {
        
         for(int i=0;i<Orders.size();i++){
            Document doc = new Document("Status", Orders.get(i).getStatus()).append("Name", Orders.get(i).getUser())
-                   .append("Arr", Orders.get(i).MakeCartarray());
+                   .append("Arr", Orders.get(i).MakeCartarray())
+                   .append("Messages", Orders.get(i).MakeMessagesArray());
             
           OrdersArray.add(doc);        
         }

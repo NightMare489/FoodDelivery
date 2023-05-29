@@ -27,6 +27,7 @@ import org.bson.conversions.Bson;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import javax.swing.ImageIcon;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,6 +40,7 @@ private JMenuItem Order_History, My_Cart, Logout,My_Profile,back;
     public DishesForm(String ResName,int state) {
         
         initComponents();
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         this.ResName = ResName;
         this.state = state;
         JMenu menu; 

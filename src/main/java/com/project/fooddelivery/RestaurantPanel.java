@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 /**
@@ -32,8 +34,16 @@ public class RestaurantPanel extends javax.swing.JPanel {
     
     
     private void initComponents2(){
-                setPreferredSize(new Dimension(0, 105));
+        setPreferredSize(new Dimension(0, 105));
 
+        if(FoodDelivery.user.getPermission()!=0){
+        del.hide();
+        }else{
+            del.setIcon(new javax.swing.ImageIcon("icons\\delete.png"));
+        }
+        
+        
+        
         Icon.setIcon(new javax.swing.ImageIcon("icons\\" + res.getName() + ".png"));
 
         Name.setFont(new java.awt.Font("Segoe UI", 0, 24));
@@ -43,9 +53,14 @@ public class RestaurantPanel extends javax.swing.JPanel {
 
         Time.setText(res.getTime()+" Min");
 
-        Rate.setText(res.getRate());
+        
+        
+//        Rate.setText(res.getRate());
+            Rate.setText("");
+            int r = (int)Double.parseDouble(res.getRate());
+           Rate.setIcon(new javax.swing.ImageIcon("icons\\rate"+r+".png"));
 
-
+           
         this.setBorder(new LineBorder(Color.black));
 
         
@@ -77,59 +92,54 @@ public class RestaurantPanel extends javax.swing.JPanel {
         Description = new javax.swing.JLabel();
         Time = new javax.swing.JLabel();
         Rate = new javax.swing.JLabel();
+        del = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(555, 105));
+        setLayout(null);
+        add(Icon);
+        Icon.setBounds(6, 6, 96, 93);
 
         Name.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         Name.setText("KFC");
+        add(Name);
+        Name.setBounds(114, 6, 310, 32);
 
         Description.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         Description.setText("Sandwitch ,Fried Chicken");
+        add(Description);
+        Description.setBounds(114, 44, 351, 16);
 
         Time.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         Time.setText("45 Min");
+        add(Time);
+        Time.setBounds(114, 66, 120, 16);
 
         Rate.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         Rate.setText("4.0");
+        add(Rate);
+        Rate.setBounds(420, 70, 130, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Time)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Rate)
-                        .addGap(57, 57, 57))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name)
-                            .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(90, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Name)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Description)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Time)
-                            .addComponent(Rate))
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addComponent(Icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        del.setPreferredSize(new java.awt.Dimension(30, 30));
+        del.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delMouseClicked(evt);
+            }
+        });
+        add(del);
+        del.setBounds(488, 6, 30, 30);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void delMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delMouseClicked
+        res.DeleteResturant();
+        RestaurantForm jframeRestaurantForm = new RestaurantForm();
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        jframeRestaurantForm.setVisible(true);
+        jframeRestaurantForm.setLocation(frame.getLocationOnScreen());
+        frame.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_delMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -138,5 +148,6 @@ public class RestaurantPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Rate;
     private javax.swing.JLabel Time;
+    private javax.swing.JLabel del;
     // End of variables declaration//GEN-END:variables
 }

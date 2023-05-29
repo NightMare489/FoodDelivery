@@ -37,5 +37,18 @@ public class Dish {
         
         
     }
+    
+    public void RemoveDishFromRestaurant(String Resname){
+        MongoCollection<Document> collection = MongoDB.Database.getCollection("Resturants");
+        Document filter = new Document("Name", Resname);
+        Document doc = new Document("Name" , this.name)
+                .append("desc", this.desc)
+                .append("Price", this.Price);
+        
+        Document update = new Document("$pull", new Document("Dishes", doc));
+        collection.updateOne(filter, update);
+        
+        
+    }
  
 }

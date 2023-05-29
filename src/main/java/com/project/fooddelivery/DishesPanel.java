@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 /**
@@ -36,6 +38,12 @@ public class DishesPanel extends javax.swing.JPanel {
     private void initComponents2(){
         setPreferredSize(new Dimension(0, 105));
 
+           if(FoodDelivery.user.getPermission()!=0){
+               del.hide();
+           }else{
+               del.setIcon(new javax.swing.ImageIcon("icons\\delete.png"));
+           } 
+        
         Icon.setIcon(new javax.swing.ImageIcon("icons\\" + dish.getName() + ".png")); 
 
         Dish_Name.setFont(new java.awt.Font("Segoe UI", 0, 24));
@@ -95,6 +103,7 @@ public class DishesPanel extends javax.swing.JPanel {
         Dish_Name = new javax.swing.JLabel();
         Dish_Description = new javax.swing.JLabel();
         Dish_Price = new javax.swing.JLabel();
+        del = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(510, 105));
 
@@ -109,46 +118,68 @@ public class DishesPanel extends javax.swing.JPanel {
         Dish_Price.setText("282.99 EGP");
         Dish_Price.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        del.setPreferredSize(new java.awt.Dimension(30, 30));
+        del.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Dish_Description, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Dish_Price)
-                        .addContainerGap(66, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Dish_Name)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Action_Button)
-                        .addGap(32, 32, 32))))
+                    .addComponent(del, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Dish_Name)
+                            .addComponent(Dish_Description, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Action_Button)
+                            .addComponent(Dish_Price)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Dish_Name)
-                            .addComponent(Action_Button))
+                        .addComponent(Icon, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(Dish_Name)
+                        .addGap(6, 6, 6)
+                        .addComponent(Dish_Description, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(del, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(Action_Button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Dish_Description, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Dish_Price))
-                        .addGap(0, 28, Short.MAX_VALUE))))
+                        .addComponent(Dish_Price)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void delMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delMouseClicked
+        
+            DishesForm df = (DishesForm)frame;
+            dish.RemoveDishFromRestaurant(df.ResName); 
+            DishesForm JDishesForm = new DishesForm(df.ResName,df.state);     
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            JDishesForm.setVisible(true);
+            JDishesForm.setLocation(frame.getLocationOnScreen());
+            frame.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_delMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -157,5 +188,6 @@ public class DishesPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Dish_Name;
     private javax.swing.JLabel Dish_Price;
     private javax.swing.JLabel Icon;
+    private javax.swing.JLabel del;
     // End of variables declaration//GEN-END:variables
 }

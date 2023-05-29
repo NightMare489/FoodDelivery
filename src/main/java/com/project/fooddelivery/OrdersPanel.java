@@ -6,6 +6,8 @@ package com.project.fooddelivery;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
@@ -14,7 +16,7 @@ import javax.swing.border.LineBorder;
  *
  * @author TheUltimateGamer
  */
-public class OrdersPanel extends javax.swing.JPanel {
+public class OrdersPanel extends javax.swing.JPanel implements FrameClosedCallback {
 
     /**
      * Creates new form NewJPanel
@@ -40,27 +42,37 @@ public class OrdersPanel extends javax.swing.JPanel {
         if(c.getStatus() == 1){
         Icon.setIcon(new javax.swing.ImageIcon("icons\\Checkout.png")); 
         ActionButton.setText("Submit a Complaint");
+        
+        if(c.getMessageArray().size()!=0){
+        ActionButton.setText("View Complaints");
+        }
+        
         }else if(c.getStatus() == 0){
         Icon.setIcon(new javax.swing.ImageIcon("icons\\checkout2.png")); 
         ActionButton.setText("Cancel Order");
         }else{
         Icon.setIcon(new javax.swing.ImageIcon("icons\\cancellation.png")); 
         ActionButton.setText("Submit a Complaint");
+        if(c.getMessageArray().size()!=0){
+        ActionButton.setText("View Complaints");
+        }
         }
         
-        if(FoodDelivery.user.getPermission()==0){
-            ActionButton.hide();
-        }
         if(FoodDelivery.user.getPermission()!=1){
             Confirm.hide();
         }
         
+        
+       
+        
         if(c.getStatus() == 1 && FoodDelivery.user.getPermission() !=2){
-            ActionButton.hide();
+            if(c.getMessageArray().size()==0)
+                ActionButton.hide();
             Confirm.hide();
         }
         if(c.getStatus() == -1 && FoodDelivery.user.getPermission() !=2){
-            ActionButton.hide();
+            if(c.getMessageArray().size()==0)
+                ActionButton.hide();
             Confirm.hide();
         }
 
@@ -182,8 +194,29 @@ public class OrdersPanel extends javax.swing.JPanel {
 
     private void ActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActionButtonActionPerformed
         if(c.getStatus()==1 || c.getStatus()==-1){
-            //@todo complaint
             
+            if(c.getMessageArray().size()!=0){
+            
+                MessagesForm mf = new MessagesForm(c);
+                mf.setVisible(true);
+                mf.setLocation(frame.getLocationOnScreen());
+                frame.setVisible(false);
+            
+            }
+            else{
+
+            MessagesFrame JMessagesFrame = new MessagesFrame(c,this);
+            JMessagesFrame.setVisible(true);
+                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+                
+            // Calculate the center position
+            int centerX = (screenSize.width - JMessagesFrame.getWidth()) / 2;
+            int centerY = (screenSize.height - JMessagesFrame.getHeight()) / 2;
+
+            // Set the frame's location to the center
+            JMessagesFrame.setLocation(centerX, centerY);
+
+            }
             
 //        ActionButton.setText("Submit a Complaint");
         }else{
@@ -206,7 +239,7 @@ public class OrdersPanel extends javax.swing.JPanel {
 
     private void ConfirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmMouseClicked
         Orders.ChangeOrderStatus(1,c);
-                OrdersForm of = new OrdersForm();
+            OrdersForm of = new OrdersForm();
             of.setVisible(true);
             of.setLocation(frame.getLocationOnScreen());
             frame.setVisible(false);
@@ -224,4 +257,16 @@ public class OrdersPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Order_Num;
     private javax.swing.JLabel Price;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onFrameClosed(String data) {
+        
+            OrdersForm of = new OrdersForm();
+            of.setVisible(true);
+            of.setLocation(frame.getLocationOnScreen());
+            frame.setVisible(false);
+        
+        
+        
+    }
 }

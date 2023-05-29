@@ -4,11 +4,13 @@ package com.project.fooddelivery;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
     public Login() {
+        setIconImage(new ImageIcon("icons\\icon.png").getImage());
         FoodDelivery.user = null; // Will Contain user data after login.
         this.setTitle("Login");
         initComponents(); // init GUI.
