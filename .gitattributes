@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.pbf filter=lfs diff=lfs merge=lfs -text
+Osm[[:space:]]data/routing-graph-cache/edges filter=lfs diff=lfs merge=lfs -text
