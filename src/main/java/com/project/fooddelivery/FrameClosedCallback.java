@@ -10,4 +10,5 @@ package com.project.fooddelivery;
  */
 public interface FrameClosedCallback {
     void onFrameClosed(String data);
+    void onFrameClosed(String Address,double lat,double lon);
 }

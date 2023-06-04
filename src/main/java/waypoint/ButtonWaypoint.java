@@ -11,7 +11,7 @@ public class ButtonWaypoint extends JButton {
     public ButtonWaypoint() {
         setSelected(false);
         setContentAreaFilled(false);
-        setIcon(new ImageIcon(getClass().getResource("pin.png")));
+        setIcon(new javax.swing.ImageIcon("icons\\pin.png"));
         Border emptyBorder = BorderFactory.createEmptyBorder();
         setBorder(emptyBorder);
         setSize(new Dimension(24, 24));

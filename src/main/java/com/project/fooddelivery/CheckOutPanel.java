@@ -8,12 +8,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import org.jxmapviewer.viewer.GeoPosition;
+import waypoint.MyWaypoint;
 
 /**
  *
  * @author TheUltimateGamer
  */
-public class CheckOutPanel extends javax.swing.JPanel {
+public class CheckOutPanel extends javax.swing.JPanel implements FrameClosedCallback {
 
     /**
      * Creates new form CheckOutPanelTest
@@ -33,6 +35,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
     private void initComponents2(){
         setPreferredSize(new Dimension(0, 105));
         this.setBorder(new LineBorder(Color.black));
+        Address.setText(c.getAddress());
         if(state == 2){
             Action_Button.hide();
         
@@ -69,7 +72,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
         Total_Label.setFont(new java.awt.Font("Segoe UI", 1, 18));
         Total_Label.setText("Total: ");
 
-        Delivery_Fees.setText("20 EGP");
+        Delivery_Fees.setText( c.getDeliveryFees()+" EGP");
 
         Total.setFont(new java.awt.Font("Segoe UI", 1, 14));
         
@@ -97,6 +100,7 @@ public class CheckOutPanel extends javax.swing.JPanel {
         Total_Label = new javax.swing.JLabel();
         Total = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        Address = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(500, 105));
         setMinimumSize(new java.awt.Dimension(500, 105));
@@ -122,6 +126,13 @@ public class CheckOutPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel7.setText("Inclusive of VAT 14% i.e. 22.40 EGP");
 
+        Address.setText("Address");
+        Address.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddressMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,26 +140,28 @@ public class CheckOutPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Sub_Total_Label)
+                    .addComponent(Delivery_Fees_Label)
+                    .addComponent(Total_Label)
+                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Sub_Total_Label)
-                            .addComponent(Delivery_Fees_Label)
-                            .addComponent(Total_Label))
-                        .addGap(149, 149, 149)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Sub_Total)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Delivery_Fees)
                                     .addComponent(Total))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                                 .addComponent(Action_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))))
+                                .addGap(24, 24, 24))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Sub_Total)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(Address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,14 +183,27 @@ public class CheckOutPanel extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(Total))))
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(Address))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AddressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddressMouseClicked
+
+            MapForm mf = new MapForm(this,state);
+            mf.addWaypoint(new MyWaypoint(new GeoPosition(c.getLat(), c.getLon())));
+            mf.addroute(24.089015072633437, 32.89867204002298, c.getLat(), c.getLon());
+            mf.setVisible(true);
+            
+        
+    }//GEN-LAST:event_AddressMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Action_Button;
+    private javax.swing.JLabel Address;
     private javax.swing.JLabel Delivery_Fees;
     private javax.swing.JLabel Delivery_Fees_Label;
     private javax.swing.JLabel Sub_Total;
@@ -186,4 +212,19 @@ public class CheckOutPanel extends javax.swing.JPanel {
     private javax.swing.JLabel Total_Label;
     private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onFrameClosed(String data) {
+        
+    }
+
+    @Override
+    public void onFrameClosed(String Address, double lat, double lon) {
+        FoodDelivery.user.getCart().setAddress(Address);
+        FoodDelivery.user.getCart().setLat(lat);
+        FoodDelivery.user.getCart().setLon(lon);
+        this.Address.setText(Address);
+        this.Delivery_Fees.setText(c.getDeliveryFees());
+        this.Total.setText(c.getTotal());
+    }
 }

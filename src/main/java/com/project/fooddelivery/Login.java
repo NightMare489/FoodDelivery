@@ -1,10 +1,15 @@
 
 package com.project.fooddelivery;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -16,6 +21,7 @@ public class Login extends javax.swing.JFrame {
         initComponents(); // init GUI.
         setLocationRelativeTo(null); // To show page in the middle.
         
+         
         TFusername.addKeyListener(new KeyListener() {
 
             @Override
@@ -57,7 +63,7 @@ public class Login extends javax.swing.JFrame {
 
     }
 
-
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -72,6 +78,7 @@ public class Login extends javax.swing.JFrame {
         Bnewacc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
         Lusername.setText("User Name:");

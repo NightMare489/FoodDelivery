@@ -112,4 +112,9 @@ public class NewMessagePanel extends javax.swing.JPanel  implements FrameClosedC
         
     }
 
+    @Override
+    public void onFrameClosed(String Address, double lon, double lat) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

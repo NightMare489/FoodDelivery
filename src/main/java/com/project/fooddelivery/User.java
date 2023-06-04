@@ -17,10 +17,12 @@ import org.json.JSONObject;
 
 public class User {
     private String Name,password,Email,Address,PhoneNumber;
+    private double Lat,Lon;
     private int Permission;
     private CreditCard creditCard;
     private Cart cart = new Cart();
     private Orders orders = new Orders();
+    
     public Cart getCart() {
         return cart;
     }
@@ -31,6 +33,22 @@ public class User {
 
     public void setAddress(String Address) {
         this.Address = Address;
+    }
+
+    public double getLat() {
+        return Lat;
+    }
+
+    public void setLat(double Lat) {
+        this.Lat = Lat;
+    }
+
+    public double getLon() {
+        return Lon;
+    }
+
+    public void setLon(double Lon) {
+        this.Lon = Lon;
     }
     
     
@@ -61,7 +79,7 @@ public class User {
         return creditCard;
     }
 
-    public User(String Name, String password, String Email,String Address,String PhoneNumber,CreditCard creditCard, int Permission) {
+    public User(String Name, String password, String Email,String Address,double Lat,double Lon,String PhoneNumber,CreditCard creditCard, int Permission) {
         this.Name = Name;
         this.password = password;
         this.creditCard = creditCard;
@@ -69,6 +87,8 @@ public class User {
         this.PhoneNumber = PhoneNumber;
         this.Address = Address;
         this.Permission = Permission;
+        this.Lat = Lat;
+        this.Lon = Lon;
     }
 
     public User(String Name, String password) {
@@ -123,11 +143,16 @@ public class User {
                 Email = documents.first().getString("Email");
                 PhoneNumber = documents.first().getString("PhoneNumber");
                 Address = documents.first().getString("Address");
+                Lon = documents.first().getDouble("Lon");
+                Lat = documents.first().getDouble("Lat");
+
                 Permission = documents.first().getInteger("Permission");
                 creditCard = new CreditCard().makeCreditCardFromObject(documents.first().get("CreditCard", Document.class));
                 List<Document> Cart = (List<Document>) documents.first().get("Cart");     
                 cart.makeCartFromArray(Cart);
-                
+                cart.setAddress(Address);
+                cart.setLat(Lat);
+                cart.setLon(Lon);
                 if(Permission ==0){
                     FindIterable<Document> AllCarts = collection.find();
                         for(Document d : AllCarts){
@@ -183,6 +208,8 @@ public class User {
                   .append("Email", Email)
                   .append("PhoneNumber", PhoneNumber)
                   .append("Address", Address)
+                  .append("Lon", Lon)
+                  .append("Lat", Lat)
                   .append("Permission", Permission)
                   .append("CreditCard",CreditCardObj)
                   .append("Cart",new ArrayList<Document>())

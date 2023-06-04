@@ -3,6 +3,7 @@ package com.project.fooddelivery;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.UpdateResult;
+import data.RoutingService;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.Document;
@@ -15,6 +16,11 @@ public class Cart {
 
   private int Status=0;
   private String User = FoodDelivery.user == null ? "":FoodDelivery.user.getName();
+  private String Address = FoodDelivery.user == null ? "":FoodDelivery.user.getAddress();
+  private double lat = FoodDelivery.user == null ? 0.0:FoodDelivery.user.getLat();
+  private double lon = FoodDelivery.user == null ? 0.0:FoodDelivery.user.getLon();
+  
+
 
   
   public Cart(){
@@ -22,11 +28,40 @@ public class Cart {
   }
   //******** To solve refrence object problem ***********//
     public Cart(Cart c){
-      
+      this.Address= c.Address;
+      this.lat = c.lat;
+      this.lon = c.lon;
       this.cart = (ArrayList<Dish>)c.cart.clone();
       
   }
 
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+
+
+
+    
     public String getUser() {
         return User;
     }
@@ -54,6 +89,14 @@ public class Cart {
     }
       
     
+    public String getDeliveryFees(){
+        RoutingService.getInstance().routing(24.089015072633437, 32.89867204002298, lat, lon);
+            
+        return String.format("%.2f", ((RoutingService.getInstance().getDistance()/1000.0) * 5.0));
+    
+    
+    }
+    
   public String getSubTotal(){
       double DSubTotal=0;
       String SSubTotal="";
@@ -66,12 +109,9 @@ public class Cart {
   }
   
  public String getTotal(){
-     String STotalPRice = "";
      String T = getSubTotal();
-     double DTotalPrice = Double.parseDouble(T) + 20.0;
-     STotalPRice += DTotalPrice;
-            
-      return STotalPRice;
+     double DTotalPrice = Double.parseDouble(T) + Double.parseDouble(getDeliveryFees());        
+      return String.format("%.2f", (DTotalPrice));
   }
  
  public String getVAT(){

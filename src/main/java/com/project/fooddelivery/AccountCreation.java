@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
 public class AccountCreation extends javax.swing.JFrame implements FrameClosedCallback {
+        double Lat=0.0,Lon=0.0;
 
     public AccountCreation() {
         initComponents(); // Show GUI
@@ -302,7 +303,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
 
     private void AddressSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressSelectionActionPerformed
         
-        MapForm JframeMap = new MapForm(this);
+        MapForm JframeMap = new MapForm(this,0);
         JframeMap.setVisible(true);
         JframeMap.setLocation(this.getLocationOnScreen());
         
@@ -364,7 +365,7 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
         }
         //********create new credit card from entered data ***********//
         CreditCard creditCard = new CreditCard(cardnumber, CCV, expMonth, expYear);
-        User user = new User(username,password,Email,Address,PhoneNumber,creditCard,permission);
+        User user = new User(username,password,Email,Address,Lat,Lon,PhoneNumber,creditCard,permission);
         String RegStatus = user.RegisterUser(); // Check if register was successful and isn't in the database
         if(RegStatus.equals("Account registered successfully")){
             JOptionPane.showMessageDialog(this, RegStatus,
@@ -414,8 +415,14 @@ public class AccountCreation extends javax.swing.JFrame implements FrameClosedCa
 
     @Override
     public void onFrameClosed(String data) {
-        TFAddress.setText(data);
         
         
+    }
+
+    @Override
+    public void onFrameClosed(String Address, double lat, double lon) {
+        TFAddress.setText(Address);
+        Lon = lon;
+        Lat = lat;
     }
 }
